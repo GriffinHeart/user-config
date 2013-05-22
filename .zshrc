@@ -45,3 +45,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+bindkey -v
+__git_files () { 
+	    _wanted files expl 'local files' _files     
+}
