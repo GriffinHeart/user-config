@@ -54,3 +54,5 @@ bindkey -v
 __git_files () { 
 	    _wanted files expl 'local files' _files     
 }
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
