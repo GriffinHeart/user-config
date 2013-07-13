@@ -13,6 +13,6 @@
 [submodule ".vim/bundle/vim-ruby"]
 	path = .vim/bundle/vim-ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
-[submodule "/home/Griff/.oh-my-zsh"]
-	path = /home/Griff/.oh-my-zsh
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
 	url = git@github.com:robbyrussell/oh-my-zsh.git
