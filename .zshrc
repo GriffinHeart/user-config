@@ -55,4 +55,6 @@ __git_files () {
 	    _wanted files expl 'local files' _files     
 }
 
+alias ll="ls -lah"
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
