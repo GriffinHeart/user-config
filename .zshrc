@@ -47,7 +47,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 
 # makes terminal behave like vim
-bindkey -v
+bindkey -e
 
 # fixes git completition on zsh slowness
 # see http://stackoverflow.com/questions/9810327/git-tab-autocompletion-is-useless-can-i-turn-it-off-or-optimize-it/9810485#9810485
