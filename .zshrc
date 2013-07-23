@@ -56,5 +56,7 @@ __git_files () {
 }
 
 alias ll="ls -lah"
+alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
+alias zshrc="vim ~/.zshrc && reload"
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
