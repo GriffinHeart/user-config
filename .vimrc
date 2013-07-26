@@ -10,10 +10,6 @@ syntax on
 filetype on
 filetype plugin indent on
 autocmd FileType ruby compiler ruby
-"let g:rubycomplete_buffer_loading = 1
-"let g:rubycomplete_classes_in_global = 1
-"let g:rubycomplete_rails = 1
-"let g:SuperTabDefaultCompletionType = \"context\"
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
@@ -69,4 +65,15 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" open new split panes to right and bottom
+set splitbelow
+set splitright
 
+" navigation mappings
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" command-T make matched show near the prompt
+let g:CommandTMatchWindowReverse = 1 
