@@ -22,3 +22,9 @@
 [submodule ".vim/bundle/command-t"]
 	path = .vim/bundle/command-t
 	url = git://git.wincent.com/command-t.git
+[submodule ".vim/bundle/vim-tmux-navigator"]
+	path = .vim/bundle/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "/home/Griff/.vim/bundle/nerdtree"]
+	path = /home/Griff/.vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git

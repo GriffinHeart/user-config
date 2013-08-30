@@ -1,5 +1,6 @@
 let mapleader = ","
 
+
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
@@ -61,6 +62,9 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" ignore case in search
+set ignorecase
+
 " set to move to next displayed line (helps with warp)
 nnoremap j gj
 nnoremap k gk
@@ -75,5 +79,46 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" set file encodings
+set fileencodings=ucs-bom,utf-8,default,latin1,sjis
+
 " command-T make matched show near the prompt
 let g:CommandTMatchWindowReverse = 1 
+
+" map CommandTFlush to F5
+noremap <F5> :CommandTFlush<CR>
+
+" let me hide non-saved buffers (vim will still warn)
+set hidden
+" focus nerdtree on the current file
+" returns true iff is NERDTree open/active
+function! rc:isNTOpen()        
+	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" returns true iff focused window is NERDTree window
+function! rc:isNTFocused()     
+	return -1 != match(expand('%'), 'NERD_Tree') 
+endfunction 
+
+" calls NERDTreeFind iff NERDTree is active, current window contains a
+" modifiable file, and we're not in vimdiff
+function! rc:syncTree()
+	if &modifiable && rc:isNTOpen() && !rc:isNTFocused() && strlen(expand('%')) > 0 && !&diff
+		NERDTreeFind
+		wincmd p
+	endif
+endfunction
+
+"autocmd BufEnter * call rc:syncTree()
+
+" open nerdtree
+let NERDTreeQuitOnOpen=1
+nmap <leader>f :NERDTreeToggle<CR>
+
+" remap split commands to be consistent with command-t
+let NERDTreeMapOpenInTab='<C-T>'
+
+" auto close nerdtree if its last window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
