@@ -1,3 +1,4 @@
+scriptencoding utf-8
 let mapleader = ","
 
 
@@ -6,6 +7,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 set background=dark
+colorscheme solarized
 set number
 syntax on
 filetype on
