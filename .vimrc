@@ -150,8 +150,10 @@ let Tlist_Use_Right_Window=1
 
 " vim-rspec config
 " run rspec with drb
-let g:rspec_command = "!rspec {spec}"
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 "mappings
 map <leader>rs :call RunCurrentSpecFile()<CR>
 map <leader>rn :call RunNearestSpec()<CR>
+map <leader>rl :call RunLastSpec()<CR>
 map <leader>ra :call RunAllSpecs()<CR>
+
