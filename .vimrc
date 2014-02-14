@@ -1,10 +1,12 @@
 scriptencoding utf-8
 let mapleader = ","
 
+set enc=utf-8
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
+let Tlist_Ctags_Cmd='/opt/boxen/homebrew/bin/ctags'
 
 set background=dark
 colorscheme solarized
@@ -17,9 +19,11 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+
 "improve autocomplete menu color
-highlight Pmenu ctermbg=Black ctermfg=White gui=bold
-highlight PmenuSel ctermbg=White ctermfg=Black
+"highlight Pmenu ctermbg=Black ctermfg=White gui=bold
+"highlight PmenuSel ctermbg=White ctermfg=Black
+
 set backspace=2
 set backspace=indent,eol,start
 set hlsearch
@@ -27,10 +31,14 @@ set laststatus=2
 set statusline=%<%f\ %h%m%r%=%-20.(line=%l,col=%c%V,totlin=%L%)\%h%m%r%=%-40(,bytval=0x%B,%n%Y%)\%P
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType eruby setlocal ts=2 sts=2 sw=2 expandtab
+
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
+
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬,trail:·
+set listchars=tab:>\ ,eol:¬,trail:·
+
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
@@ -124,3 +132,26 @@ let NERDTreeMapOpenInTab='<C-T>'
 " auto close nerdtree if its last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+" taglist options
+nmap <leader>q :TlistToggle<CR>
+nmap <leader>p :TlistShowPrototype<CR>
+"go to window on toggle
+let Tlist_GainFocus_On_ToggleOpen=1
+"close window on selecting tag
+let Tlist_Close_On_Select=1
+"close vim if taglist is the last window
+let Tlist_Exit_OnlyWindow=1
+"always process the file even if taglist is closed
+let Tlist_Process_File_Always=1
+"fold all files but the in current buffer
+let Tlist_File_Fold_Auto_Close=1
+"show taglist in the right side
+let Tlist_Use_Right_Window=1
+
+" vim-rspec config
+" run rspec with drb
+let g:rspec_command = "!rspec --drb --fail-fast {spec}"
+"mappings
+map <leader>rs :call RunCurrentSpecFile()<CR>
+map <leader>rn :call RunNearestSpec()<CR>
+map <leader>ra :call RunAllSpecs()<CR>

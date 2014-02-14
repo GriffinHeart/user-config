@@ -1,5 +1,7 @@
 source /opt/boxen/env.sh
 
+export EDITOR=vim
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -7,7 +9,8 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="af-magic"
+DEFAULT_USER="griff"
+ZSH_THEME="agnoster"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -60,5 +63,9 @@ __git_files () {
 alias ll="ls -lah"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias zshrc="vim ~/.zshrc && reload"
+
+#fixes C-s in mac os and some other bindings
 stty start undef stop undef
+stty -ixon -ixoff
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
