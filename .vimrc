@@ -150,7 +150,7 @@ let Tlist_Use_Right_Window=1
 
 " vim-rspec config
 " run rspec with drb
-let g:rspec_command = "!rspec --drb --fail-fast {spec}"
+let g:rspec_command = "!rspec {spec}"
 "mappings
 map <leader>rs :call RunCurrentSpecFile()<CR>
 map <leader>rn :call RunNearestSpec()<CR>
