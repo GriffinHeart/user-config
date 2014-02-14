@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/vim-surround.git"]
 	path = .vim/bundle/vim-surround.git
 	url = git://github.com/tpope/vim-surround.git
+[submodule ".vim/bundle/vim-rbenv"]
+	path = .vim/bundle/vim-rbenv
+	url = https://github.com/tpope/vim-rbenv
