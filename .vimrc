@@ -6,7 +6,6 @@ set enc=utf-8
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
-let Tlist_Ctags_Cmd='/opt/boxen/homebrew/bin/ctags'
 
 set background=dark
 colorscheme solarized
@@ -133,21 +132,14 @@ let NERDTreeMapOpenInTab='<C-T>'
 " auto close nerdtree if its last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" taglist options
-nmap <leader>q :TlistToggle<CR>
-nmap <leader>p :TlistShowPrototype<CR>
-"go to window on toggle
-let Tlist_GainFocus_On_ToggleOpen=1
-"close window on selecting tag
-let Tlist_Close_On_Select=1
-"close vim if taglist is the last window
-let Tlist_Exit_OnlyWindow=1
-"always process the file even if taglist is closed
-let Tlist_Process_File_Always=1
-"fold all files but the in current buffer
-let Tlist_File_Fold_Auto_Close=1
-"show taglist in the right side
-let Tlist_Use_Right_Window=1
+"tagbar options
+nmap <leader>q :TagbarToggle<CR>
+let g:tagbar_autofocus=1
+let g:tagbar_ctags_bin='/opt/boxen/homebrew/bin/ctags'
+let g:tagbar_zoomwidth=0
+let g:tagbar_autoclose=1
+let g:tagbar_compact=1
+let g:tagbar_show_visibility=0
 
 " vim-rspec config
 " run rspec with drb
