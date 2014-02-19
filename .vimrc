@@ -32,6 +32,7 @@ set statusline=%<%f\ %h%m%r%=%-20.(line=%l,col=%c%V,totlin=%L%)\%h%m%r%=%-40(,by
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType eruby setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType cucumber setlocal ts=2 sts=2 sw=2 expandtab
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
