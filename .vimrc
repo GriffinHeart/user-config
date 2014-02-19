@@ -141,6 +141,12 @@ let g:tagbar_autoclose=1
 let g:tagbar_compact=1
 let g:tagbar_show_visibility=0
 
+" Syntastic config
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_auto_loc_list=1
+
+
 " vim-rspec config
 " run rspec with drb
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
