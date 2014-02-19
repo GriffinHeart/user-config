@@ -61,6 +61,3 @@
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
-[submodule ".vim/bundle/jshint2"]
-	path = .vim/bundle/jshint2
-	url = https://github.com/Shutnik/jshint2.vim
