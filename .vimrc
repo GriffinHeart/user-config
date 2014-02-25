@@ -7,6 +7,8 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
 set background=dark
 colorscheme solarized
 set number
@@ -156,3 +158,21 @@ map <leader>rn :call RunNearestSpec()<CR>
 map <leader>rl :call RunLastSpec()<CR>
 map <leader>ra :call RunAllSpecs()<CR>
 
+" enable folding for coffee files
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+" for coffee tags
+if executable('coffeetags')
+  let g:tagbar_type_coffee = {
+        \ 'ctagsbin' : 'coffeetags',
+        \ 'ctagsargs' : '--include-vars',
+        \ 'kinds' : [
+        \ 'f:functions',
+        \ 'o:object',
+        \ ],
+        \ 'sro' : ".",
+        \ 'kind2scope' : {
+        \ 'f' : 'object',
+        \ 'o' : 'object',
+        \ }
+        \ }
+endif
