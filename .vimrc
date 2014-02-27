@@ -34,6 +34,8 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType eruby setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType cucumber setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -152,6 +154,8 @@ let g:syntastic_auto_loc_list=1
 " vim-rspec config
 " run rspec with drb
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+let g:mocha_js_command = 'call Send_to_Tmux("mocha --recursive --nocolors {spec}\n")'
+let g:mocha_coffee_command = 'call Send_to_Tmux("mocha -b --compilers coffee:coffee-script{spec}\n")'
 "mappings
 map <leader>rs :call RunCurrentSpecFile()<CR>
 map <leader>rn :call RunNearestSpec()<CR>
@@ -160,6 +164,7 @@ map <leader>ra :call RunAllSpecs()<CR>
 
 " enable folding for coffee files
 autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+
 " for coffee tags
 if executable('coffeetags')
   let g:tagbar_type_coffee = {
