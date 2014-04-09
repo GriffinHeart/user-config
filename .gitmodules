@@ -76,3 +76,6 @@
 [submodule ".vim/bundle/vim-spec"]
 	path = .vim/bundle/vim-spec
 	url = https://github.com/geekjuice/vim-spec
+[submodule ".vim/bundle/vim-stylus"]
+	path = .vim/bundle/vim-stylus
+	url = https://github.com/wavded/vim-stylus

@@ -1,3 +1,4 @@
+LANG=en_US.UTF-8
 source /opt/boxen/env.sh
 
 export EDITOR=vim
@@ -63,6 +64,7 @@ __git_files () {
 alias ll="ls -lah"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias zshrc="vim ~/.zshrc && reload"
+alias aws="/user/local/bin/aws"
 
 #fixes C-s in mac os and some other bindings
 stty start undef stop undef

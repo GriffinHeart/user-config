@@ -3,6 +3,15 @@ let mapleader = ","
 
 set enc=utf-8
 
+" set file encodings
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8                     " better default than latin1
+  setglobal fileencoding=utf-8           " change default file encoding when writing new files
+endif
+
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
@@ -36,6 +45,9 @@ autocmd FileType eruby setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType cucumber setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType jade setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType stylus setlocal ts=2 sts=2 sw=2 expandtab
+
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -93,8 +105,6 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" set file encodings
-set fileencodings=ucs-bom,utf-8,default,latin1,sjis
 
 " command-T make matched show near the prompt
 let g:CommandTMatchWindowReverse = 1 
@@ -155,7 +165,7 @@ let g:syntastic_auto_loc_list=1
 " run rspec with drb
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 let g:mocha_js_command = 'call Send_to_Tmux("mocha --recursive --nocolors {spec}\n")'
-let g:mocha_coffee_command = 'call Send_to_Tmux("mocha -b --compilers coffee:coffee-script{spec}\n")'
+let g:mocha_coffee_command = 'call Send_to_Tmux("mocha -C -b --compilers coffee:coffee-script {spec}\n")'
 "mappings
 map <leader>rs :call RunCurrentSpecFile()<CR>
 map <leader>rn :call RunNearestSpec()<CR>
