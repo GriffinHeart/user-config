@@ -1,15 +1,15 @@
 scriptencoding utf-8
 let mapleader = ","
-
 set enc=utf-8
+set clipboard=unnamed
 
 " set file encodings
 if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-  set encoding=utf-8                     " better default than latin1
-  setglobal fileencoding=utf-8           " change default file encoding when writing new files
+	if &termencoding == ""
+		let &termencoding = &encoding
+	endif
+	set encoding=utf-8                     " better default than latin1
+	setglobal fileencoding=utf-8           " change default file encoding when writing new files
 endif
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
@@ -17,6 +17,7 @@ call pathogen#infect()
 call pathogen#helptags()
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:aghighlight = 1
 
 set background=dark
 colorscheme solarized
@@ -37,6 +38,8 @@ autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 set backspace=2
 set backspace=indent,eol,start
 set hlsearch
+set incsearch
+set scrolloff=2
 set laststatus=2
 set statusline=%<%f\ %h%m%r%=%-20.(line=%l,col=%c%V,totlin=%L%)\%h%m%r%=%-40(,bytval=0x%B,%n%Y%)\%P
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -50,7 +53,10 @@ autocmd FileType stylus setlocal ts=2 sts=2 sw=2 expandtab
 
 
 " Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
+nmap <leader>ll :set list!<CR>
+
+" close location list
+nmap <leader>lc :lclose<CR>
 
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:>\ ,eol:¬,trail:·
@@ -107,7 +113,7 @@ nnoremap <C-H> <C-W><C-H>
 
 
 " command-T make matched show near the prompt
-let g:CommandTMatchWindowReverse = 1 
+let g:CommandTMatchWindowReverse = 1
 
 " map CommandTFlush to F5
 noremap <F5> :CommandTFlush<CR>
@@ -116,14 +122,14 @@ noremap <F5> :CommandTFlush<CR>
 set hidden
 " focus nerdtree on the current file
 " returns true iff is NERDTree open/active
-function! rc:isNTOpen()        
+function! rc:isNTOpen()
 	return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
 endfunction
 
 " returns true iff focused window is NERDTree window
-function! rc:isNTFocused()     
-	return -1 != match(expand('%'), 'NERD_Tree') 
-endfunction 
+function! rc:isNTFocused()
+	return -1 != match(expand('%'), 'NERD_Tree')
+endfunction
 
 " calls NERDTreeFind iff NERDTree is active, current window contains a
 " modifiable file, and we're not in vimdiff
@@ -157,9 +163,10 @@ let g:tagbar_show_visibility=0
 
 " Syntastic config
 let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
+let g:syntastic_check_on_wq=1
 let g:syntastic_auto_loc_list=1
-
+let g:syntastic_ruby_checkers= ['mri', 'rubocop']
+let g:syntastic_ruby_rubocop_args = '-R'
 
 " vim-rspec config
 " run rspec with drb
@@ -177,17 +184,17 @@ autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
 " for coffee tags
 if executable('coffeetags')
-  let g:tagbar_type_coffee = {
-        \ 'ctagsbin' : 'coffeetags',
-        \ 'ctagsargs' : '--include-vars',
-        \ 'kinds' : [
-        \ 'f:functions',
-        \ 'o:object',
-        \ ],
-        \ 'sro' : ".",
-        \ 'kind2scope' : {
-        \ 'f' : 'object',
-        \ 'o' : 'object',
-        \ }
-        \ }
+	let g:tagbar_type_coffee = {
+				\ 'ctagsbin' : 'coffeetags',
+				\ 'ctagsargs' : '--include-vars',
+				\ 'kinds' : [
+				\ 'f:functions',
+				\ 'o:object',
+				\ ],
+				\ 'sro' : ".",
+				\ 'kind2scope' : {
+				\ 'f' : 'object',
+				\ 'o' : 'object',
+				\ }
+				\ }
 endif
