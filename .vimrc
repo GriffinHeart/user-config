@@ -1,7 +1,24 @@
-scriptencoding utf-8
-let mapleader = ","
 set enc=utf-8
 set clipboard=unnamed
+scriptencoding utf-8
+
+set nocompatible
+filetype off
+let mapleader = ","
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+call vundle#end()
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<c-s>"
+let g:UltiSnipsJumpBackwardTrigger="<c-x>"
 
 " set file encodings
 if has("multi_byte")
@@ -16,14 +33,13 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:agprg = 'ag --nogroup --nocolor --column'
 let g:aghighlight = 1
 
 set background=dark
 colorscheme solarized
 set number
 syntax on
-filetype on
 filetype plugin indent on
 autocmd FileType ruby compiler ruby
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
@@ -50,6 +66,7 @@ autocmd FileType coffee setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType jade setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType stylus setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 
 
 " Shortcut to rapidly toggle `set list`
@@ -198,3 +215,22 @@ if executable('coffeetags')
 				\ }
 				\ }
 endif
+
+" easy motion config
+nmap <Leader>s <Plug>(easymotion-s)
+" used wit dt, ct, etc...
+omap <Leader>t <Plug>(easymotion-bd-tl)
+" line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1
+
+" function to refresh chrome browser in mac
+function! RefreshBrowser()
+	execute "! osascript -e \"tell application \"Google Chrome\" \"chrome\" set winref to a reference to (first window whose title does not start with \"Developer Tools - \") set winref's index to 1 reload active tab of winref end tell\""
+endfunction
+		
+nmap <leader>c :call RefreshBrowser()<CR>

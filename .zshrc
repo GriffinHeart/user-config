@@ -71,3 +71,4 @@ stty start undef stop undef
 stty -ixon -ixoff
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+DOCKER_HOST=tcp://localhost:4243
