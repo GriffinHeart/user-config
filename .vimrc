@@ -36,6 +36,7 @@ call pathogen#helptags()
 let g:agprg = 'ag --nogroup --nocolor --column'
 let g:aghighlight = 1
 
+let g:solarized_termtrans = 1
 set background=dark
 colorscheme solarized
 set number
