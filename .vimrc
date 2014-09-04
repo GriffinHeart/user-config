@@ -14,6 +14,8 @@ Plugin 'gmarik/Vundle.vim'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mustache/vim-mustache-handlebars'
 
 call vundle#end()
 let g:UltiSnipsExpandTrigger="<c-s>"
@@ -68,6 +70,7 @@ autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType jade setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType stylus setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+autocmd BufRead,BufNewFile *.js.es6 set filetype=javascript
 
 
 " Shortcut to rapidly toggle `set list`
@@ -167,7 +170,7 @@ let g:syntastic_ruby_rubocop_args = '-R'
 
 " vim-rspec config
 " run rspec with drb
-let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
 let g:mocha_js_command = 'call Send_to_Tmux("mocha --recursive --nocolors {spec}\n")'
 let g:mocha_coffee_command = 'call Send_to_Tmux("mocha -C -b --compilers coffee:coffee-script {spec}\n")'
 "mappings
