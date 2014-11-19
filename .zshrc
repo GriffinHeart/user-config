@@ -1,8 +1,3 @@
-LANG=en_US.UTF-8
-source /opt/boxen/env.sh
-
-export EDITOR=vim
-
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -52,6 +47,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
+LANG=en_US.UTF-8
+export EDITOR=vim
+source /opt/boxen/env.sh
 # makes terminal behave like vim
 bindkey -e
 
@@ -64,7 +62,6 @@ __git_files () {
 alias ll="ls -lah"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias zshrc="vim ~/.zshrc && reload"
-alias aws="/user/local/bin/aws"
 
 #fixes C-s in mac os and some other bindings
 stty start undef stop undef
@@ -72,3 +69,10 @@ stty -ixon -ixoff
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 DOCKER_HOST=tcp://localhost:4243
+
+export JAVA_HOME="$(/usr/libexec/java_home)"
+export EC2_AMITOOL_HOME="/opt/boxen/homebrew/Cellar/ec2-ami-tools/1.5.3/libexec"
+export EC2_HOME="/opt/boxen/homebrew/Cellar/ec2-api-tools/1.7.1.0/libexec"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

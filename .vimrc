@@ -16,8 +16,15 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'scrooloose/syntastic'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'godlygeek/tabular'
+Plugin 'walm/jshint.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'lukaszkorecki/CoffeeTags'
 
 call vundle#end()
+
 let g:UltiSnipsExpandTrigger="<c-s>"
 let g:UltiSnipsJumpForwardTrigger="<c-s>"
 let g:UltiSnipsJumpBackwardTrigger="<c-x>"
@@ -60,7 +67,7 @@ set hlsearch
 set incsearch
 set scrolloff=2
 set laststatus=2
-set statusline=%<%f\ %h%m%r%=%-20.(line=%l,col=%c%V,totlin=%L%)\%h%m%r%=%-40(,bytval=0x%B,%n%Y%)\%P
+set statusline=%<%f\ %h%m%r%=%-0.(l=%l,c=%c%V,tl=%L%)\%h%m%r%=%-20(,bv=0x%B,%n%Y%)%{fugitive#statusline()}
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType eruby setlocal ts=2 sts=2 sw=2 expandtab
@@ -71,7 +78,8 @@ autocmd FileType jade setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType stylus setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.js.es6 set filetype=javascript
-
+autocmd BufRead,BufNewFile *.js.handlebars set filetype=mustache
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>ll :set list!<CR>
@@ -135,6 +143,7 @@ nnoremap <C-H> <C-W><C-H>
 
 " command-T make matched show near the prompt
 let g:CommandTMatchWindowReverse = 1
+set wildignore+=node_modules,public/js/vendor,php/lib/vendor
 
 " map CommandTFlush to F5
 noremap <F5> :CommandTFlush<CR>
@@ -182,6 +191,11 @@ map <leader>ra :call RunAllSpecs()<CR>
 " enable folding for coffee files
 autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 
+" auto delete fugitive buffers on exit
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+
+
 " for coffee tags
 if executable('coffeetags')
 	let g:tagbar_type_coffee = {
@@ -217,3 +231,8 @@ function! RefreshBrowser()
 endfunction
 		
 nmap <leader>c :call RefreshBrowser()<CR>
+
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
