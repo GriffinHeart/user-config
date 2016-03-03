@@ -1,3 +1,10 @@
+source ~/.bin/tmuxinator.zsh
+HOMEBREW_GITHUB_API_TOKEN='cf7a60e177850c1189a06657c913ea5453897225'
+LANG=en_US.UTF-8
+LANGUAGE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+VISUAL=vim
+EDITOR="$VISUAL"
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -41,14 +48,12 @@ ZSH_THEME="agnoster"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
+
+# Customize to your needs...
 plugins=(git encode64 lol nyan yum)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-
-LANG=en_US.UTF-8
-export EDITOR=vim
 source /opt/boxen/env.sh
 # makes terminal behave like vim
 bindkey -e
@@ -62,6 +67,7 @@ __git_files () {
 alias ll="ls -lah"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias zshrc="vim ~/.zshrc && reload"
+alias tasks="cd ~/src/tasks && git pull && vim tasks.md"
 
 #fixes C-s in mac os and some other bindings
 stty start undef stop undef
@@ -76,3 +82,4 @@ export EC2_HOME="/opt/boxen/homebrew/Cellar/ec2-api-tools/1.7.1.0/libexec"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+. ~/z.sh

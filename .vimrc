@@ -12,18 +12,39 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'scrooloose/syntastic'
 Plugin 'marijnh/tern_for_vim'
 Plugin 'godlygeek/tabular'
-Plugin 'walm/jshint.vim'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-scripts/tComment'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-rbenv'
+
+" javascript development
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'kchmck/vim-coffee-script'
 Plugin 'lukaszkorecki/CoffeeTags'
+Plugin 'walm/jshint.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+
+Plugin 'elzr/vim-json'
+
+Plugin 'tpope/vim-speeddating'
+
+Plugin 'rizzatti/dash.vim'
 
 call vundle#end()
+
+" highlight 80 column
+let &colorcolumn=join(range(81,999),",")
+
 
 let g:UltiSnipsExpandTrigger="<c-s>"
 let g:UltiSnipsJumpForwardTrigger="<c-s>"
@@ -57,6 +78,9 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
+"close scratch area on autocomplete
+autocmd CompleteDone * pclose
+
 "improve autocomplete menu color
 "highlight Pmenu ctermbg=Black ctermfg=White gui=bold
 "highlight PmenuSel ctermbg=White ctermfg=Black
@@ -77,9 +101,13 @@ autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType jade setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType stylus setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.js.es6 set filetype=javascript
 autocmd BufRead,BufNewFile *.js.handlebars set filetype=mustache
 autocmd BufRead,BufNewFile *.md set filetype=markdown
+
+" es6 like javascript
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>ll :set list!<CR>
@@ -106,6 +134,7 @@ function! Preserve(command)
 	let @/=_s
 	call cursor(l, c)
 endfunction
+
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap _= :call Preserve("normal gg=G")<CR>
 
@@ -140,10 +169,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-
 " command-T make matched show near the prompt
 let g:CommandTMatchWindowReverse = 1
-set wildignore+=node_modules,public/js/vendor,php/lib/vendor
+set wildignore+=node_modules,public/js/vendor,php/lib/vendor,coverage,doc
 
 " map CommandTFlush to F5
 noremap <F5> :CommandTFlush<CR>
@@ -161,6 +189,10 @@ let NERDTreeMapOpenInTab='<C-T>'
 " auto close nerdtree if its last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
+set tags=./.tags
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:easytags_dynamic_files = 1
+
 "tagbar options
 nmap <leader>q :TagbarToggle<CR>
 let g:tagbar_autofocus=1
@@ -171,13 +203,21 @@ let g:tagbar_compact=1
 let g:tagbar_show_visibility=0
 
 " Syntastic config
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=1
-let g:syntastic_auto_loc_list=1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers= ['mri', 'rubocop']
 let g:syntastic_ruby_rubocop_args = '-R'
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_ruby_mri_quiet_messages = {
+\ "regex": 'assigned but unused variable'
+\ }
 
-" vim-rspec config
+let g:syntastic_ruby_checkers= ['javac']
+let g:syntastic_java_javac_config_file_enabled = 1
+
+" vim-spec config
 " run rspec with drb
 let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
 let g:mocha_js_command = 'call Send_to_Tmux("mocha --recursive --nocolors {spec}\n")'
@@ -194,7 +234,12 @@ autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 " auto delete fugitive buffers on exit
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
+" Fugitive use U to reset file
+au FileType gitcommit nmap <buffer> U :Git checkout -- <c-r><c-g><cr>
 
+nmap <leader>gst :Gst<CR>
+nmap <leader>gc :Gcommit<CR>
+nmap <leader>gb :Gblame<CR>
 
 " for coffee tags
 if executable('coffeetags')
@@ -226,13 +271,36 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_smartsign_us = 1
 
 " function to refresh chrome browser in mac
-function! RefreshBrowser()
-	execute "! osascript -e \"tell application \"Google Chrome\" \"chrome\" set winref to a reference to (first window whose title does not start with \"Developer Tools - \") set winref's index to 1 reload active tab of winref end tell\""
-endfunction
+func! RefreshBrowser()
+	exec "silent ! osascript -e 'tell application \"Google Chrome\" to reload active tab of window 2'"
+	redraw!
+endfunc
 		
-nmap <leader>c :call RefreshBrowser()<CR>
+nmap <leader>rc :call RefreshBrowser()<CR>
 
 nmap <Leader>a= :Tabularize /=<CR>
 vmap <Leader>a= :Tabularize /=<CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
+
+"let g:used_javascript_libs = 'underscore, angularjs, jasmine, jquery'
+"let g:syntastic_javascript_checkers = ['jshint']
+
+let g:syntastic_javascript_checkers = ['eslint']
+
+" vim-jsx
+let g:jsx_ext_required = 0
+
+" easy tags
+"let g:easytags_languages = {
+"\   'Javascript': {
+"\     'cmd': 'jsctags',
+"\       'args': [],
+"\       'fileoutput_opt': '-f',
+"\       'stdout_opt': '-f-',
+"\       'recurse_flag': '-R'
+"\   }
+"\}
+
+" dash.vim
+nmap <silent> <leader>d <Plug>DashSearch
