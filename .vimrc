@@ -12,19 +12,25 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'thoughtbot/vim-rspec'
+
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'ternjs/tern_for_vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
-Plugin 'marijnh/tern_for_vim'
 Plugin 'godlygeek/tabular'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'vim-scripts/tComment'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-rbenv'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " javascript development
 Plugin 'othree/javascript-libraries-syntax.vim'
@@ -33,6 +39,7 @@ Plugin 'lukaszkorecki/CoffeeTags'
 Plugin 'walm/jshint.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 Plugin 'elzr/vim-json'
 
@@ -77,6 +84,8 @@ autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_load_gemfile = 1
+autocmd FileType ruby,eruby let g:rubycomplete_use_bundler = 1
 
 "close scratch area on autocomplete
 autocmd CompleteDone * pclose
@@ -102,6 +111,8 @@ autocmd FileType jade setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType stylus setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType scss setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.js.es6 set filetype=javascript
 autocmd BufRead,BufNewFile *.js.handlebars set filetype=mustache
 autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -169,8 +180,16 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+"
+nmap <leader>gf <C-W>vgf 
+
+" vim-rails
+nnoremap <leader>av :AV<CR>
+nnoremap <leader>as :AS<CR>
+
 " command-T make matched show near the prompt
 let g:CommandTMatchWindowReverse = 1
+let g:CommandTMaxHeight = 15
 set wildignore+=node_modules,public/js/vendor,php/lib/vendor,coverage,doc
 
 " map CommandTFlush to F5
@@ -179,9 +198,13 @@ noremap <F5> :CommandTFlush<CR>
 " let me hide non-saved buffers (vim will still warn)
 set hidden
 
+" quit nerdtree if last
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " open nerdtree
 let NERDTreeQuitOnOpen=1
 nmap <leader>f :NERDTreeToggle<CR>
+" Find current file in nerdtree
+nmap <leader>c :NERDTreeFind<CR>
 
 " remap split commands to be consistent with command-t
 let NERDTreeMapOpenInTab='<C-T>'
@@ -189,9 +212,9 @@ let NERDTreeMapOpenInTab='<C-T>'
 " auto close nerdtree if its last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-set tags=./.tags
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:easytags_dynamic_files = 1
+"set tags=./.tags
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:easytags_dynamic_files = 1
 
 "tagbar options
 nmap <leader>q :TagbarToggle<CR>
@@ -208,19 +231,19 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_ruby_checkers= ['mri', 'rubocop']
-let g:syntastic_ruby_rubocop_args = '-R'
+let g:syntastic_ruby_rubocop_args = '-R -D -C true'
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_ruby_mri_quiet_messages = {
 \ "regex": 'assigned but unused variable'
 \ }
 
-let g:syntastic_ruby_checkers= ['javac']
+let g:syntastic_java_checkers= ['javac']
 let g:syntastic_java_javac_config_file_enabled = 1
 
 " vim-spec config
 " run rspec with drb
 let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
-let g:mocha_js_command = 'call Send_to_Tmux("mocha --recursive --nocolors {spec}\n")'
+let g:mocha_js_command = 'call Send_to_Tmux("mocha --require test/setup.js --compilers js:babel-register --recursive {spec}\n")'
 let g:mocha_coffee_command = 'call Send_to_Tmux("mocha -C -b --compilers coffee:coffee-script {spec}\n")'
 "mappings
 map <leader>rs :call RunCurrentSpecFile()<CR>
@@ -304,3 +327,5 @@ let g:jsx_ext_required = 0
 
 " dash.vim
 nmap <silent> <leader>d <Plug>DashSearch
+
+nmap <leader>w :w<CR>
