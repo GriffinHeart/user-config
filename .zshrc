@@ -1,10 +1,11 @@
 source ~/.bin/tmuxinator.zsh
-HOMEBREW_GITHUB_API_TOKEN='cf7a60e177850c1189a06657c913ea5453897225'
-LANG=en_US.UTF-8
-LANGUAGE=en_US.UTF-8
-LC_ALL=en_US.UTF-8
-VISUAL=vim
-EDITOR="$VISUAL"
+export HOMEBREW_GITHUB_API_TOKEN='cf7a60e177850c1189a06657c913ea5453897225'
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export VISUAL=vim
+export EDITOR="$VISUAL"
+export REPO_PATH=~/src/di
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -73,13 +74,12 @@ alias tasks="cd ~/src/tasks && git pull && vim tasks.md"
 stty start undef stop undef
 stty -ixon -ixoff
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 DOCKER_HOST=tcp://localhost:4243
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export EC2_AMITOOL_HOME="/opt/boxen/homebrew/Cellar/ec2-ami-tools/1.5.3/libexec"
 export EC2_HOME="/opt/boxen/homebrew/Cellar/ec2-api-tools/1.7.1.0/libexec"
 
-### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+eval "$(rbenv init -)"
 . ~/z.sh
