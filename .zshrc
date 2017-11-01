@@ -1,5 +1,5 @@
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 source ~/.bin/tmuxinator.zsh
 export HOMEBREW_GITHUB_API_TOKEN='3f7b0fe7a659e7d529c70a7e5808927d783d0809' 
 export LANG=en_US.UTF-8
@@ -82,5 +82,5 @@ export EC2_AMITOOL_HOME="/opt/boxen/homebrew/Cellar/ec2-ami-tools/1.5.3/libexec"
 export EC2_HOME="/opt/boxen/homebrew/Cellar/ec2-api-tools/1.7.1.0/libexec"
 
 export PATH="/usr/local/heroku/bin:$PATH"
-#eval "$(rbenv init -)"
+eval "$(rbenv init -)"
 . ~/z.sh

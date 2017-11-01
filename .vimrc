@@ -12,9 +12,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" wiki!
-Plugin 'vimwiki/vimwiki'
-
 " theme
 Plugin 'altercation/vim-colors-solarized'
 
@@ -26,9 +23,11 @@ Plugin 'mileszs/ack.vim' "install ag
 
 " File navigation
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " Go from vim to tmux with keybind
 Plugin 'christoomey/vim-tmux-navigator'
+
 " send commands to tmux
 Plugin 'jgdavey/tslime.vim'
 
@@ -38,6 +37,9 @@ Plugin 'majutsushi/tagbar'
 " repeat all the things
 Plugin 'tpope/vim-repeat'
 
+" refresh browser
+Plugin 'mkitt/browser-refresh.vim'
+
 " git integration
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
@@ -46,16 +48,23 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'wincent/command-t'
 
 " toogle location list
-Plugin 'Valloric/ListToggle' 
+Plugin 'Valloric/ListToggle'
 
-" match everything with % 
+" show indentation marks
+Plugin 'nathanaelkane/vim-indent-guides'
+
+" comment all the things
+Plugin 'tomtom/tcomment_vim'
+
+" match everything with %
 Plugin 'tmhedberg/matchit'
 
 " maker
 Plugin 'neomake/neomake'
 
 " syntax checker & linter
-"Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 " surround all the things
 Plugin 'tpope/vim-surround'
@@ -68,18 +77,32 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rbenv'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
-Plugin 'thoughtbot/vim-rspec'
+
+Plugin 'geekjuice/vim-spec'
 
 " Rails
 Plugin 'tpope/vim-rails'
 
 " javascript
-Plugin 'pangloss/vim-javascript' 
-Plugin 'kchmck/vim-coffee-script'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/javascript-libraries-syntax.vim'
+" json
+Plugin 'elzr/vim-json'
+
+" increment decrement dates C-A
+Plugin 'tpope/vim-speeddating'
+
+" Mappings for common stuff
+Plugin 'tpope/vim-unimpaired'
+
+" Dash bindings
+Plugin 'rizzatti/dash.vim'
+
 call vundle#end()
 
-filetype plugin indent on 
-syntax on 
+filetype plugin indent on
+syntax on
 set number
 set background=dark
 colorscheme solarized
@@ -214,6 +237,7 @@ let g:syntastic_ruby_checkers= ['mri', 'rubocop']
 let g:syntastic_ruby_rubocop_args = '-R -D -C true'
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {"regex": "possibly useless use of a variable in void context"}
+let g:syntastic_javascript_checkers=['eslint']
 
 "Invisible character colors
 highlight NonText guifg=#4a4a59
@@ -238,11 +262,16 @@ let g:tagbar_show_visibility=0
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_detailed_diagnostics = ''
 
 " command-t
 let g:CommandTMatchWindowReverse = 1
 let g:CommandTMaxHeight = 15
+let g:CommandTWildIgnore=&wildignore . ",*/node_modules"
 noremap <F5> :CommandTFlush<CR>
+
 
 " nerdtree config
 "
@@ -264,6 +293,7 @@ let g:tslime_always_current_session = 1
 
 " vim-rspec config
 let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
+let g:mocha_js_command = 'call Send_to_Tmux("mocha test/.setup.js {spec}\n")'
 map <leader>rs :call RunCurrentSpecFile()<CR>
 map <leader>rn :call RunNearestSpec()<CR>
 map <leader>rl :call RunLastSpec()<CR>
@@ -281,3 +311,18 @@ nmap <leader>gb :Gblame<CR>
 
 highlight TrailingWhitespace ctermbg=darkgray guibg=darkgray
 match TrailingWhitespace /\s\+$\| \+\ze\t/
+
+" reload browser
+nmap <silent><leader>rb :RRB<CR>
+
+" vim-indent-guides
+let g:indent_guides_start_level=3
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
+
+" vim-jsx
+let g:jsx_ext_required = 0
+
+" vim-dash
+nmap <silent> <leader>d <Plug>DashSearch
