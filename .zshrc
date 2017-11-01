@@ -1,5 +1,7 @@
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 source ~/.bin/tmuxinator.zsh
-export HOMEBREW_GITHUB_API_TOKEN='cf7a60e177850c1189a06657c913ea5453897225'
+export HOMEBREW_GITHUB_API_TOKEN='3f7b0fe7a659e7d529c70a7e5808927d783d0809' 
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -55,7 +57,6 @@ plugins=(git encode64 lol nyan yum)
 
 source $ZSH/oh-my-zsh.sh
 
-source /opt/boxen/env.sh
 # makes terminal behave like vim
 bindkey -e
 
