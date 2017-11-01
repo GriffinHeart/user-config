@@ -46,9 +46,9 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'wincent/command-t'
 
 " toogle location list
-Plugin 'Valloric/ListToggle' 
+Plugin 'Valloric/ListToggle'
 
-" match everything with % 
+" match everything with %
 Plugin 'tmhedberg/matchit'
 
 " maker
