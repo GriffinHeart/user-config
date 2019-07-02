@@ -1,0 +1,40 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Hugo Almeida
+	email = squall.griffinheart@gmail.com
+[push]
+	default = current
+[pull]
+	ff = only
+[rebase]
+	autostash = true
+[merge]
+	tool = kdiff3
+[diff]
+	guitool = kdiff3
+[mergetool "kdiff3"]
+	trustExitCode = false
+[difftool "kdiff3"]
+	trustExitCode = false
+[core]
+	excludesfile = /Users/hugo/.gitignore
+[alias]
+    co = checkout
+    s = stash
+    sp = stash pop
+    su = !git stash show -p | git apply -R
+    sa = stash apply
+    am = commit --amend --no-edit
+    lazy = ! git pull && git commit -a -m \"commit\" && git push
+    rc = rebase --continue
+    ra = rebase --abort
+    rs = rebase --skip
+    rd = rebase -i develop
+    #rm = rebase -i master
+    mt = mergetool
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
