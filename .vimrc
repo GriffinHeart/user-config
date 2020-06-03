@@ -1,4 +1,5 @@
 set nocompatible              " be iMproved, required
+set rubydll=~/.rbenv/versions/2.6.3/lib/libruby.dylib
 " mac clipboard integration
 set clipboard=unnamed
 set enc=utf-8
@@ -63,8 +64,8 @@ Plugin 'tmhedberg/matchit'
 Plugin 'neomake/neomake'
 
 " syntax checker & linter
-Plugin 'scrooloose/syntastic'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 " surround all the things
 Plugin 'tpope/vim-surround'
@@ -78,7 +79,7 @@ Plugin 'tpope/vim-rbenv'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-bundler'
 
-Plugin 'geekjuice/vim-spec'
+Plugin 'thoughtbot/vim-rspec'
 
 " Rails
 Plugin 'tpope/vim-rails'
@@ -87,8 +88,15 @@ Plugin 'tpope/vim-rails'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'othree/javascript-libraries-syntax.vim'
+
+" go
+Plugin 'fatih/vim-go'
+
 " json
 Plugin 'elzr/vim-json'
+
+" terraform
+Plugin 'hashivim/vim-terraform'
 
 " increment decrement dates C-A
 Plugin 'tpope/vim-speeddating'
@@ -133,6 +141,7 @@ autocmd FileType jade setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType stylus setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
 autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType markdown setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufRead,BufNewFile *.js.es6 set filetype=javascript
 autocmd BufRead,BufNewFile *.js.handlebars set filetype=mustache
 autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -224,7 +233,7 @@ let g:neomake_open_list = 0
 " run neomake on write of a file
 autocmd! BufWritePost * Neomake
 let g:neomake_ruby_rubocop_maker = {
-    \ 'args': ['--format', 'emacs', '-R', '-D', '-C', 'true'],
+    \ 'args': ['--format', 'emacs', '-D', '-C', 'true'],
     \ }
 
 " syntastic config
@@ -234,7 +243,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_ruby_checkers= ['mri', 'rubocop']
-let g:syntastic_ruby_rubocop_args = '-R -D -C true'
+let g:syntastic_ruby_rubocop_args = '-D -C true'
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {"regex": "possibly useless use of a variable in void context"}
 let g:syntastic_javascript_checkers=['eslint']

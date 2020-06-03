@@ -1,7 +1,8 @@
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 source ~/.bin/tmuxinator.zsh
-export HOMEBREW_GITHUB_API_TOKEN='3f7b0fe7a659e7d529c70a7e5808927d783d0809' 
+export HOMEBREW_GITHUB_API_TOKEN='e79a25477654b4b3b7248ff9a4cca4396d609842'
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -15,7 +16,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-DEFAULT_USER="griffin"
+DEFAULT_USER="hugo"
 ZSH_THEME="agnoster"
 
 # Example aliases
@@ -66,9 +67,11 @@ __git_files () {
 	    _wanted files expl 'local files' _files     
 }
 
+alias notes='vim ~/src/tenten/notes.md'
 alias ll="ls -lah"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias zshrc="vim ~/.zshrc && reload"
+alias vimrc="vim ~/.vimrc"
 alias tasks="cd ~/src/tasks && git pull && vim tasks.md"
 
 #fixes C-s in mac os and some other bindings
@@ -77,10 +80,16 @@ stty -ixon -ixoff
 
 DOCKER_HOST=tcp://localhost:4243
 
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_AMITOOL_HOME="/opt/boxen/homebrew/Cellar/ec2-ami-tools/1.5.3/libexec"
-export EC2_HOME="/opt/boxen/homebrew/Cellar/ec2-api-tools/1.7.1.0/libexec"
-
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 eval "$(rbenv init -)"
 . ~/z.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/hugo/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hugo/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/hugo/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hugo/google-cloud-sdk/completion.zsh.inc'; fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/openjdk/bin:$PATH"

@@ -1,0 +1,9 @@
+# configs
+config focusPreferSameApp false
+
+
+# Focus Bindings
+bind l:ctrl,cmd    focus right
+bind h:ctrl,cmd    focus left
+bind k:ctrl,cmd    focus up
+bind j:ctrl,cmd    focus down
