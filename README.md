@@ -29,7 +29,7 @@ Setting up true color: https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
 Setup:
 
 1. install brew
-2. basic tools `brew install zsh iterm2 tmux neovim git chrome`
+2. basic tools `brew install zsh iterm2 tmux neovim git chrome asdf`
 3. install oh-my-zsh
 4. clone the user-config repo into `src/personal/user-config`
   - `ln -s  ~/src/personal/user-config/.config`
@@ -41,7 +41,7 @@ Setup:
 ```
 3. setup iterm2
   - Download SourceCodePro font [link](https://www.nerdfonts.com/font-downloads)
-  - Install Sauce Code Pro Nerd Font Complete.ttf and Mono version ttf
+  - Install Sauce Code Pro Nerd Font Complete.ttf and Mono version ttf (regular, italic, bold, bold italic)
   - Pref->General->Pref load preferences directly from user-config file
   - Don't save now just relaunch iTerm2 to take effect
 4. make the brew zsh default (see [link](https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/)
@@ -52,7 +52,7 @@ Setup:
   - `git clone --depth 1 -- https://github.com/zsh-users/zsh-autosuggestions`
   - `git clone --depth 1 -- https://github.com/zsh-users/zsh-syntax-highlighting`
   - `ln ~/src/personal/user-config/.zshrc .zshrc`
-3. productivity tools `brew install alfred rectangle google-drive keepassxc`
+3. productivity tools `brew install alfred rectangle google-drive keepassxc tmuxinator`
 4. essential terminal tools `brew install fzf tig kdiff3`
   - Note: If you get `Can't be opened because...` error on kdiff3 go to Application right click open
   - install fzf completions `$(brew --prefix)/opt/fzf/install`
@@ -82,3 +82,5 @@ Setup:
    IdentityFile ~/.ssh/my_key2
 ```
   - Add them to keychain with `ssh-add --apple-use-keychain ~/.ssh/my_priv_key`
+12. install packer for neovim
+13. instal
