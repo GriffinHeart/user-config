@@ -14,4 +14,5 @@ packer.startup(function(use)
 		requires = { 'tjdevries/colorbuddy.nvim' }
 	}
 	use 'alexghergh/nvim-tmux-navigation'
+	use 'nvim-lualine/lualine.nvim'
 end)
