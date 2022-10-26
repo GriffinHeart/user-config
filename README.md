@@ -1,3 +1,7 @@
+Structure of repo and configs inspired and somewhat copied from [craftzdog/dotfiles-public](https://github.com/craftzdog/dotfiles-public/)
+
+since the modernization of my config files circa 2022
+
 git submodule init
 
 git submodule update
