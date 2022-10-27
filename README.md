@@ -29,7 +29,7 @@ Setting up true color: https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
 Setup:
 
 1. install brew
-2. basic tools `brew install zsh iterm2 tmux neovim git chrome asdf`
+2. basic tools `brew install zsh iterm2 tmux neovim git chrome`
 3. install oh-my-zsh
 4. clone the user-config repo into `src/personal/user-config`
   - `ln -s  ~/src/personal/user-config/.config`
@@ -56,7 +56,7 @@ Setup:
 4. essential terminal tools `brew install fzf tig kdiff3`
   - Note: If you get `Can't be opened because...` error on kdiff3 go to Application right click open
   - install fzf completions `$(brew --prefix)/opt/fzf/install`
-5. misc tools `brew install gron rg jq tldr wget tree`
+5. misc tools `brew install gron rg jq tldr wget tree asdf`
 6. go get a coffee
 7. Unbind mac keyboard shortcuts
   - c-up-arrow
@@ -83,4 +83,7 @@ Setup:
 ```
   - Add them to keychain with `ssh-add --apple-use-keychain ~/.ssh/my_priv_key`
 12. install packer for neovim
-13. instal
+13. asdf
+  - install python plugin and install python version
+	- `asdf global python <version>
+	- install pipx into that version `pip install pipx`

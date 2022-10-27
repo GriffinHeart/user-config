@@ -137,6 +137,8 @@ alias tasks='vim ~/tasks.md'
 export LSCOLORS="exgxfxdacxDaDaxbadacex"
 export LS_COLORS="di=34;40:ln=36;40:so=35;40:pi=33;40:ex=32;40:bd=1;33;40:cd=1;33;40:su=0;41:sg=0;43:tw=0;42:ow=34;40:"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+autoload -U bashcompinit
+bashcompinit
 
 # Shorten the prompt
 prompt_dir() {
@@ -145,3 +147,7 @@ prompt_dir() {
 
 # Enable autocomplete
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Created by `pipx` on 2022-10-27 01:09:06
+export PATH="$PATH:/Users/hugo.almeida/.local/bin"
+eval "$(register-python-argcomplete pipx)"

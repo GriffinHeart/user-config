@@ -30,6 +30,7 @@ vim.opt.hidden = true
 vim.opt.backspace = 'start,eol,indent'
 vim.opt.path:append { '**' } -- Search down subfolders to find files
 vim.opt.wildignore:append { '*/node_modules/*' }
+vim.opt.wildmode = 'longest:full,list:full'
 
 vim.opt.listchars = 'tab:>\\ ,eol:¬,trail:·'
 
