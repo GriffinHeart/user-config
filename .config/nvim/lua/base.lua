@@ -1,5 +1,7 @@
 vim.cmd('autocmd!')
 
+-- disable mouse
+vim.opt.mouse = ''
 
 vim.opt.clipboard = 'unnamedplus'
 vim.scriptencoding = 'utf-8'
@@ -40,3 +42,6 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+-- make - part of a word
+vim.opt.iskeyword:append('-')

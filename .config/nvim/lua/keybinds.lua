@@ -13,6 +13,12 @@ keymap.set('i', 'jk', '<esc>', noremap_opt)
 -- unbind esc
 keymap.set('i', '<esc>', '<nop>', noremap_opt)
 
+-- clear searched highlight
+keymap.set('n', '<leader>nh', ':nohl<CR>')
+
+-- maximize toggle
+keymap.set('n', '<leader>sm', ':MaximizerToggle<CR>')
+
 
 -- Turn off arrow keys
 keymap.set('n', '<Left>', '<nop>', noremap_opt)
@@ -30,7 +36,6 @@ keymap.set('n', '<C-H>', '<C-W><C-H>', noremap_opt)
 keymap.set('n', '<C-J>', '<C-W><C-J>', noremap_opt)
 keymap.set('n', '<C-K>', '<C-W><C-K>', noremap_opt)
 keymap.set('n', '<C-L>', '<C-W><C-L>', noremap_opt)
-
 
 -- ,w to write
 keymap.set('n', '<leader>w', ':w<CR>')

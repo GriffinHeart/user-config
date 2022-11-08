@@ -131,6 +131,7 @@ alias mux="tmuxinator"
 alias notes='vim ~/notes.md'
 alias work='vim ~/work.md'
 alias tasks='vim ~/tasks.md'
+alias admin='vim ~/administrative.md'
 
 
 # ls colors

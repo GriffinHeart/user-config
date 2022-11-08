@@ -3,15 +3,17 @@ if (not status) then return end
 
 local protocol = require('vim.lsp.protocol')
 
-local on_attach = function(client, bufnr)
-	-- formatting
-	if client.server_capabilities.documentFormattingProvider then
-		vim.api.nvim_command [[augroup Format]]
-		vim.api.nvim_command [[autocmd! * <buffer>]]
-		vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-		vim.api.nvim_command [[augroup END]]
-	end
+local on_attach = function()
 end
+-- local on_attach = function(client, bufnr)
+-- 	-- formatting
+-- 	if client.server_capabilities.documentFormattingProvider then
+-- 		vim.api.nvim_command [[augroup Format]]
+-- 		vim.api.nvim_command [[autocmd! * <buffer>]]
+-- 		vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+-- 		vim.api.nvim_command [[augroup END]]
+-- 	end
+-- end
 
 -- brew install lua-language-server
 nvim_lsp.sumneko_lua.setup {
@@ -38,6 +40,7 @@ nvim_lsp.pylsp.setup {
 	settings = {
 		pylsp = {
 			plugins = {
+				-- TODO: check the other tools configs
 				flake8 = {
 					enabled = false,
 				},

@@ -10,7 +10,7 @@ git submodule update
 For Mac
 
 
-to export iTerm2 settings: 
+to export iTerm2 settings:
 
 plutil -convert xml1 ~/Library/Preferences/com.googlecode.iterm2.plist -o ./com.googlecode.iterm2.plist
 
@@ -87,3 +87,17 @@ Setup:
   - install python plugin and install python version
 	- `asdf global python <version>
 	- install pipx into that version `pip install pipx`
+14. Transfer work gpg keys
+15. setup podman
+
+
+Problems:
+If LspLog complains:
+
+`[ERROR][2022-10-27 14:11:45] .../vim/lsp/rpc.lua:733	"rpc"	"pylsp"	"stderr"	"2022-10-27 14:11:45,223 JST - WARNING - pylsp.config.config - Failed to load hook pylsp_definitions: Python version 3.11 is currently not supported.\n"`
+
+its because pylsp is using a old version of jedi that uses a version of parso
+that doesn't include python 3.11 grammar
+
+force a newer version of jedi
+`pipx inject --pip-args="--upgrade" python-lsp-server jedi`
