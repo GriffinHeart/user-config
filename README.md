@@ -89,6 +89,7 @@ Setup:
 	- install pipx into that version `pip install pipx`
 14. Transfer work gpg keys
 15. setup podman
+	- see https://github.com/ansible/vscode-ansible/wiki/macos
 
 
 Problems:

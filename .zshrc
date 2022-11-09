@@ -84,6 +84,7 @@ plugins=(
   fzf
   zsh-autosuggestions
   zsh-syntax-highlighting
+	web-search
 	asdf
 )
 
