@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export XDG_CONFIG_HOME="$HOME/.config/"
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
@@ -15,8 +22,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-DEFAULT_USER="hugo.almeida"
-ZSH_THEME="agnoster"
+DEFAULT_USER="griffo"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -142,14 +149,15 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 autoload -U bashcompinit
 bashcompinit
 
-# Shorten the prompt
-prompt_dir() {
-  prompt_segment blue $CURRENT_FG '%15<...<%~%<<'
-}
-
 # Enable autocomplete
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Created by `pipx` on 2022-10-27 01:09:06
 export PATH="$PATH:/Users/hugo.almeida/.local/bin"
 eval "$(register-python-argcomplete pipx)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export FLYCTL_INSTALL="/home/griffo/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"

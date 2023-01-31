@@ -21,6 +21,7 @@ ts.setup {
     'python',
     'gitignore',
     'elixir',
+    'erlang',
     'css',
     'tsx',
   },
