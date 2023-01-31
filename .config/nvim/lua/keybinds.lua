@@ -43,6 +43,9 @@ keymap.set('n', '<leader>w', ':w<CR>')
 -- Don't yank when deleting chars
 keymap.set('n', 'x', '"_x')
 
+-- Preserve copy when pasting
+keymap.set('x', '<leader>p', '"_dP')
+
 -- make <leader>gf open file
 keymap.set('n', '<leader>gf', '<C-W>vgf')
 
@@ -50,10 +53,24 @@ keymap.set('n', '<leader>gf', '<C-W>vgf')
 keymap.set('n', '<leader>av', ':AV<CR>', noremap_opt)
 keymap.set('n', '<leader>as', ':AS<CR>', noremap_opt)
 
+-- Move lines visually
+-- TODO: find better mapping
+-- keymap.set('v', 'J', ":m '>+1<CR>gv=gv'")
+-- keymap.set('v', 'K', ":m '<-2<CR>gv=gv'")
+
+-- Join while keeping cursor in same place
+keymap.set('n', 'J', 'mzJ`z')
 
 -- Center screen when scrolling search results
-keymap.set('n', 'n', 'nzz')
-keymap.set('n', 'N', 'Nzz')
+keymap.set('n', 'n', 'nzzzv')
+keymap.set('n', 'N', 'Nzzzv')
+
+-- Center screen when moving half pages
+keymap.set('n', '<C-u>', '<C-u>zz')
+keymap.set('n', '<C-d>', '<C-d>zz')
 
 -- Toggle setlist
 keymap.set('n', '<leader>ll', ':set list!<CR>')
+
+-- start replace on word
+vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

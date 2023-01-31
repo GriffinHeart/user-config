@@ -1,0 +1,4 @@
+set main-view-date = custom
+set main-view-date-format = "%d/%m/%y %H:%M"
+set main-view-author-display = abbreviated
+set main-view-id-display = true

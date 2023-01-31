@@ -56,7 +56,7 @@ Setup:
 4. essential terminal tools `brew install fzf tig kdiff3`
   - Note: If you get `Can't be opened because...` error on kdiff3 go to Application right click open
   - install fzf completions `$(brew --prefix)/opt/fzf/install`
-5. misc tools `brew install gron rg jq tldr wget tree asdf`
+5. misc tools `brew install gron rg jq tldr wget tree asdf peco`
 6. go get a coffee
 7. Unbind mac keyboard shortcuts
   - c-up-arrow

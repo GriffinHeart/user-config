@@ -42,7 +42,7 @@ nvim_lsp.pylsp.setup {
 			plugins = {
 				-- TODO: check the other tools configs
 				flake8 = {
-					enabled = false,
+					enabled = true,
 				},
 				black = { enabled = true, },
 				pycodestyle = {

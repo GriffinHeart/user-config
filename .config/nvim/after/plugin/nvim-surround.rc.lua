@@ -1,7 +1,7 @@
 local status, surround = pcall(require, 'nvim-surround')
-if (not status) then
-	print('nvim-surround not installed')
-	return
-end
+if (not status) then return end
 
-surround.setup({})
+-- matchup and surround not working well.
+-- cs%{ broken
+-- but cs{) works
+surround.setup()

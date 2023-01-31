@@ -16,8 +16,6 @@
 	guitool = kdiff3
 [mergetool "kdiff3"]
 	trustExitCode = false
-[difftool "kdiff3"]
-	trustExitCode = false
 [core]
 	excludesfile = ~/.config/git/.gitignore_global
 [alias]
@@ -42,3 +40,5 @@
 	trustExitCode = true
 [credential]
 	helper = osxkeychain
+[init]
+	defaultBranch = main
