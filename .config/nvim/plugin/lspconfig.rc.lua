@@ -54,3 +54,11 @@ nvim_lsp.pylsp.setup {
 		}
 	}
 }
+
+-- install elixir-ls in ~/elixir-ls
+nvim_lsp.elixirls.setup {
+	cmd = { "/home/griffo/elixir-ls/language_server.sh" };
+}
+
+-- npm install -g typescript typescript-language-server
+nvim_lsp.tsserver.setup {}
