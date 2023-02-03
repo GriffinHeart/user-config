@@ -74,3 +74,15 @@ keymap.set('n', '<leader>ll', ':set list!<CR>')
 
 -- start replace on word
 vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- code related bindings
+-- lightbulb code action
+keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<cr>', noremap_opt)
+keymap.set('n', '<leader>co', '<cmd>Lspsaga outline<cr>', noremap_opt)
+-- LSP incoming calls looks usefull check it in lspsaga
+
+
+-- diagnostics
+keymap.set('n', '<leader>ds', '<cmd>Lspsaga show_line_diagnostics<cr>', noremap_opt)
+keymap.set('n', '<leader>dn', '<Cmd>Lspsaga diagnostic_jump_next<cr>', noremap_opt)
+keymap.set('n', '<leader>dp', '<Cmd>Lspsaga diagnostic_jump_prev<cr>', noremap_opt)

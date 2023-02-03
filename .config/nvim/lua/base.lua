@@ -13,6 +13,10 @@ vim.wo.number = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin= 1
 
+-- when no suitable python3 found it makes vim startup very slow, disable it
+-- this disables ability to for example can't run :python3 print("testing")
+vim.g.loaded_python3_provider = 0
+
 vim.opt.title = true
 vim.opt.backup = false
 vim.opt.backupskip = '/tmp/*,/private/tmp/*'
@@ -48,3 +52,4 @@ vim.opt.splitright = true
 
 -- make - part of a word
 vim.opt.iskeyword:append('-')
+
