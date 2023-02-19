@@ -26,13 +26,15 @@ Group.new('CursorLineNr', colors.yellow, colors.black, styles.NONE, colors.base1
 Group.new('ColorColumn', colors.none, colors.colorColumnColor, styles.NONE, colors.none)
 Group.new('Visual', colors.none, colors.base03, styles.reverse)
 
---vim.cmd([[highlight NonText guifg=#4a4a59]])
---vim.cmd([[highlight SpecialKey guifg=#4a4a59]])
-
 -- previous
 -- Color.new('alightgrey', '#9090a2')
 Color.new('lightpink', '#e95678')
-
 -- invisible characters
 Group.new('NonText', colors.lightpink)
 Group.new('SpecialKey', colors.lightpink)
+
+-- More highlighting for trailling white space
+Color.new('whitespace', '#332600')
+Group.new('ExtraWhitespace', colors.none, colors.whitespace)
+vim.cmd([[match ExtraWhitespace /\s\+$\| \+\ze\t/]])
+vim.cmd([[match ExtraWhitespace /\s\+$/]])   
