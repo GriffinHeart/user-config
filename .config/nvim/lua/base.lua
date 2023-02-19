@@ -43,6 +43,13 @@ vim.opt.wildmode = 'longest:full,list:full'
 
 vim.opt.listchars = 'tab:>\\ ,eol:¬,trail:·'
 
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+vim.opt.winblend = 0
+vim.opt.wildoptions = 'pum'
+vim.opt.pumblend = 5
+--vim.opt.background = 'dark'
+
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
@@ -53,3 +60,5 @@ vim.opt.splitright = true
 -- make - part of a word
 vim.opt.iskeyword:append('-')
 
+-- let columns after 80 be highlighted
+vim.cmd([[let &colorcolumn=join(range(81, 999), ',')]])

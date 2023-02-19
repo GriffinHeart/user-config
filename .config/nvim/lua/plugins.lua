@@ -37,12 +37,15 @@ packer.startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
-
+  use 'nvim-telescope/telescope-file-browser.nvim'         
+     
   -- File explorer
   use 'nvim-tree/nvim-tree.lua'
 
   use 'alexghergh/nvim-tmux-navigation'
+
+  -- indent guides
+  use 'lukas-reineke/indent-blankline.nvim'
 
   use 'tpope/vim-fugitive'
 
