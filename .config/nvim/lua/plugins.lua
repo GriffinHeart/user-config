@@ -9,10 +9,7 @@ vim.cmd [[packadd packer.nvim]]
 packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use {
-    'svrana/neosolarized.nvim',
-    requires = { 'tjdevries/colorbuddy.nvim' }
-  }
+  use 'folke/tokyonight.nvim'
   use 'nvim-lualine/lualine.nvim'
 
   use {
@@ -67,6 +64,13 @@ packer.startup(function(use)
 
   use 'jgdavey/tslime.vim'
   use 'vim-test/vim-test'
+
+  -- rust
+  use 'simrat39/rust-tools.nvim'
+
+  -- debugger
+  use 'mfussenegger/nvim-dap'
+  use 'rcarriga/nvim-dap-ui'
 
   use({
     "iamcco/markdown-preview.nvim",
