@@ -27,6 +27,8 @@ packer.startup(function(use)
   use 'glepnir/lspsaga.nvim'
   use 'onsails/lspkind-nvim'
   use 'L3MON4D3/LuaSnip'
+  use 'rafamadriz/friendly-snippets'
+  use 'saadparwaiz1/cmp_luasnip'
   -- sources for cmp
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
@@ -68,4 +70,14 @@ packer.startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
+
+  use({
+    "folke/which-key.nvim"
+  })
+
+  use 'dstein64/vim-startuptime'
+
+  -- rust
+  use 'simrat39/rust-tools.nvim'
+  use 'mfussenegger/nvim-dap'
 end)

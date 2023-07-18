@@ -2,6 +2,7 @@
 [user]
 	name = Hugo Almeida
 	email = hugofalmeida@gmail.com
+	signingkey = C25A40D23B86DE64
 [includeIf "gitdir:~/src/work/"]
 	path =  ~/.config/git/work_config
 [push]
@@ -42,3 +43,5 @@
 	helper = osxkeychain
 [init]
 	defaultBranch = main
+[commit]
+	gpgsign = true

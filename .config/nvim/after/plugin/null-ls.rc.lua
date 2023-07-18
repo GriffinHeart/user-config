@@ -1,8 +1,8 @@
-if true then return end -- skip null-ls until I need it
-local status, null_ls = pcall(require, 'null_ls')
+--if true then return end -- skip null-ls until I need it
+local status, null_ls = pcall(require, 'null-ls')
 if (not status) then return end
 
-null_ls.setup {
+null_ls.setup({
 	on_attach = function(client, bufnr)
 		if client.server_capabilities.documentFormattingProvider then
 			vim.api.nvim_command [[augroup Format]]
@@ -11,10 +11,16 @@ null_ls.setup {
 			vim.api.nvim_command [[augroup END]]
 		end
 	end,
-	sources = {
-		null_ls.builtins.diagnostics.eslint_d.with({
-			diagnostics_format = '[eslint] #{m}\n(#{c})'
-		}),
-		null_ls.builtins.diagnostics.zsh
-	}
-}
+  sources = {
+    null_ls.builtins.formatting.black,
+  },
+  -- sources = {
+  --   null_ls.builtins.diagnostics.pylint,
+  -- },
+	-- sources = {
+	-- 	null_ls.builtins.diagnostics.eslint_d.with({
+	-- 		diagnostics_format = '[eslint] #{m}\n(#{c})'
+	-- 	}),
+	-- 	null_ls.builtins.diagnostics.zsh
+	-- }
+})

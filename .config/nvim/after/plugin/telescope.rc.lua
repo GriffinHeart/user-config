@@ -16,6 +16,7 @@ telescope.setup {
 				['<C-v'] = actions.select_vertical,
 			},
 		},
+    file_ignore_patterns = { ".git" },
 	},
 	extensions = {
 		file_browser = {
