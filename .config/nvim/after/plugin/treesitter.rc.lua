@@ -15,6 +15,7 @@ ts.setup {
     'vim',
     'json',
     'yaml',
+    'go',
     'markdown',
     'bash',
     'dockerfile',
@@ -24,6 +25,8 @@ ts.setup {
     'erlang',
     'css',
     'tsx',
+    'starlark',
+    'rust',
   },
   auto_tag = {
     enable = true,

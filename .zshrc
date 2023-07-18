@@ -5,6 +5,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 export XDG_CONFIG_HOME="$HOME/.config/"
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
@@ -22,8 +25,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-DEFAULT_USER="griffo"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# DEFAULT_USER="hugo.almeida"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -86,13 +88,13 @@ HYPHEN_INSENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  gitfast
-  z
-  fzf
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-	web-search
-	asdf
+    gitfast
+    z
+    fzf-tab
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+  	web-search
+    asdf
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -140,6 +142,13 @@ alias notes='vim ~/notes.md'
 alias work='vim ~/work.md'
 alias tasks='vim ~/tasks.md'
 alias admin='vim ~/administrative.md'
+alias docs='vim ~/src/work/documents/'
+alias confnvim='vim ~/.config/nvim/'
+
+alias docker='podman'
+alias docker-compose='podman-compose'
+
+alias www="python -m http.server"
 
 
 # ls colors
@@ -156,8 +165,23 @@ bashcompinit
 export PATH="$PATH:/Users/hugo.almeida/.local/bin"
 eval "$(register-python-argcomplete pipx)"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Shorten the prompt
+# prompt_dir() {
+#   prompt_segment blue $CURRENT_FG '%15<...<%~%<<'
+# }
 
 export FLYCTL_INSTALL="/home/griffo/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+
+# . ~/.asdf/plugins/java/set-java-home.zsh
+
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
+
+export GPG_TTY=$(tty)
