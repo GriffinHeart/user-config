@@ -14,6 +14,7 @@ end
 -- end
 
 nvim_lsp.lua_ls.setup {
+	cmd = { "/home/griffo/lua-language-server/bin/lua-language-server" },
   on_attach = on_attach,
   settings = {
     Lua = {
