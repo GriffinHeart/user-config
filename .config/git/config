@@ -1,44 +1,44 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Hugo Almeida
-	email = hugofalmeida@gmail.com
+  name = Hugo Almeida
+  email = hugofalmeida@gmail.com
 [includeIf "gitdir:~/src/work/"]
-	path =  ~/.config/git/work_config
+  path =  ~/.config/git/work_config
 [push]
-	default = current
+  default = current
 [pull]
-	ff = only
+  ff = only
 [rebase]
-	autostash = true
+  autostash = true
 [merge]
-	tool = kdiff3
+  tool = kdiff3
 [diff]
-	guitool = kdiff3
+  guitool = kdiff3
 [mergetool "kdiff3"]
-	trustExitCode = false
+  trustExitCode = false
 [core]
-	excludesfile = ~/.config/git/.gitignore_global
+  excludesfile = ~/.config/git/.gitignore_global
 [alias]
-    co = checkout
-    s = stash
-    sp = stash pop
-    su = !git stash show -p | git apply -R
-    sa = stash apply
-    am = commit --amend --no-edit
-    lazy = ! git pull && git commit -a -m \"commit\" && git push
-    rc = rebase --continue
-    ra = rebase --abort
-    rs = rebase --skip
-    rd = rebase -i develop
-    r = rebase -i main
-    mt = mergetool
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path =
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  co = checkout
+  s = stash
+  sp = stash pop
+  su = !git stash show -p | git apply -R
+  sa = stash apply
+  am = commit --amend --no-edit
+  lazy = ! git pull && git commit -a -m \"commit\" && git push
+  rc = rebase --continue
+  ra = rebase --abort
+  rs = rebase --skip
+  rd = rebase -i develop
+  r = rebase -i main
+  mt = mergetool
+[difftool "winkdiff3"]
+  cmd= /mnt/c/Program\\ Files/KDiff3/kdiff3.exe "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)"
+[mergetool "winkdiff3"]
+  cmd = /mnt/c/Program\\ Files/KDiff3/kdiff3.exe "$(wslpath -aw $BASE)" "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)" -o "$(wslpath -aw $MERGED)"
+  trustExitCode = false
+  keepBackup = false
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [init]
-	defaultBranch = main
+  defaultBranch = main

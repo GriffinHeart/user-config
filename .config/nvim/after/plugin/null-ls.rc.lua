@@ -13,6 +13,7 @@ null_ls.setup({
 	end,
   sources = {
     null_ls.builtins.formatting.black,
+    null_ls.builtins.diagnostics.pylint,
   },
   -- sources = {
   --   null_ls.builtins.diagnostics.pylint,
@@ -20,6 +21,12 @@ null_ls.setup({
 	-- sources = {
 	-- 	null_ls.builtins.diagnostics.eslint_d.with({
 	-- 		diagnostics_format = '[eslint] #{m}\n(#{c})'
+	-- sources = {
+	-- 	null_ls.builtins.diagnostics.eslint_d.with({
+	-- 		diagnostics_format = '[eslint] #{m}\n(#{c})'
+	-- 	}),
+	-- 	null_ls.builtins.diagnostics.zsh
+	-- }
 	-- 	}),
 	-- 	null_ls.builtins.diagnostics.zsh
 	-- }
