@@ -1,11 +1,15 @@
 local status, rusttools = pcall(require, 'rust-tools')
 if (not status) then return end
 
-local extension_path = vim.env.HOME .. '/.vscode-server/extensions/vadimcn.vscode-lldb-1.9.2/'
 local extension_path = vim.env.HOME .. '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/'
+
+local this_os = vim.loop.os_uname().sysname;
+if this_os:find "Windows" then
+  extension_path = vim.env.HOME .. '/.vscode-server/extensions/vadimcn.vscode-lldb-1.9.2/'
+end
+
 local codelldb_path = extension_path .. 'adapter/codelldb'
 local liblldb_path = extension_path .. 'lldb/lib/liblldb'
-local this_os = vim.loop.os_uname().sysname;
 
 -- The path in windows is different
 if this_os:find "Windows" then

@@ -6,6 +6,8 @@ end
 
 -- brew install lua-language-server
 nvim_lsp.lua_ls.setup {
+  -- point to where lsp is
+  cmd = { "/home/griffo/lua-language-server/bin/lua-language-server" },
   on_attach = on_attach,
   settings = {
     Lua = {

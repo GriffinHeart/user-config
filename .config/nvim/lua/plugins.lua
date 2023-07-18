@@ -37,6 +37,9 @@ packer.startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-file-browser.nvim'    
+
+  -- Util debug startup slowness
+  use 'dstein64/vim-startuptime'
      
   -- File explorer
   use 'nvim-tree/nvim-tree.lua'
@@ -67,6 +70,7 @@ packer.startup(function(use)
 
   -- rust
   use 'simrat39/rust-tools.nvim'
+  use 'mfussenegger/nvim-dap'
 
   -- debugger
   use 'mfussenegger/nvim-dap'
@@ -77,13 +81,4 @@ packer.startup(function(use)
     run = function() vim.fn["mkdp#util#install"]() end,
   })
 
-  use({
-    "folke/which-key.nvim"
-  })
-
-  use 'dstein64/vim-startuptime'
-
-  -- rust
-  use 'simrat39/rust-tools.nvim'
-  use 'mfussenegger/nvim-dap'
 end)
