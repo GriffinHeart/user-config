@@ -15,5 +15,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require('base')
 require('keybinds')
-require('plugins')
 require('lazy_plugins')

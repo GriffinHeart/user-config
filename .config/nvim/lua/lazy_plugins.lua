@@ -9,9 +9,12 @@ lazy.setup({
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    config = function ()
-      vim.cmd[[colorscheme tokyonight]]
-    end,
+    opts = {
+      on_colors = function(colors)
+        colors.comment = "#767676"
+        colors.fg_gutter = "#767676"
+      end
+    }
   },
   {
     -- Util debug startup slowness

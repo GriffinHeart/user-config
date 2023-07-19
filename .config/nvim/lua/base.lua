@@ -50,6 +50,8 @@ vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
 --vim.opt.background = 'dark'
 
+vim.opt.signcolumn = 'yes'
+
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
@@ -62,3 +64,4 @@ vim.opt.iskeyword:append('-')
 
 -- let columns after 80 be highlighted
 vim.cmd([[let &colorcolumn=join(range(81, 999), ',')]])
+

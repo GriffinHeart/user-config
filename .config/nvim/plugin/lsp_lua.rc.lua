@@ -4,10 +4,8 @@ if (not status) then return end
 local on_attach = function()
 end
 
--- brew install lua-language-server
-nvim_lsp.lua_ls.setup {
-  -- point to where lsp is
-  cmd = { "/home/griffo/lua-language-server/bin/lua-language-server" },
+
+local opts = {
   on_attach = on_attach,
   settings = {
     Lua = {
@@ -25,3 +23,12 @@ nvim_lsp.lua_ls.setup {
     }
   }
 }
+
+local this_os = vim.loop.os_uname().sysname;
+if this_os:find "Windows" then
+  -- point to where lsp is
+  opts["cmd"] = { "/home/griffo/lua-language-server/bin/lua-language-server" }
+end
+
+-- brew install lua-language-server
+nvim_lsp.lua_ls.setup(opts)

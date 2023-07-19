@@ -1,9 +1,6 @@
 local status, nvim_lsp = pcall(require, 'lspconfig')
 if (not status) then return end
 
-local on_attach = function()
-end
-
 local util = require('lspconfig/util')
 local path = util.path
 
