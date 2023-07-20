@@ -114,3 +114,6 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+vim.cmd [[autocmd BufWritePre *.rs lua vim.lsp.buf.format()]]
+vim.g.rust_recommended_style = false
