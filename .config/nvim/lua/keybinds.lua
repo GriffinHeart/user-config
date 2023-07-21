@@ -82,6 +82,8 @@ keymap.set('n', '<leader>co', '<cmd>Lspsaga outline<cr>', noremap_opt)
 -- LSP incoming calls looks usefull check it in lspsaga
 
 
+--keymap.set('n', '<leader> vim.lsp.buf.format()]]
+
 -- diagnostics
 keymap.set('n', '<leader>ds', '<cmd>Lspsaga show_line_diagnostics<cr>', noremap_opt)
 keymap.set('n', '<leader>dn', '<Cmd>Lspsaga diagnostic_jump_next<cr>', noremap_opt)

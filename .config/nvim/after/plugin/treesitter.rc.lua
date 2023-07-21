@@ -17,6 +17,7 @@ ts.setup {
     'yaml',
     'go',
     'markdown',
+    'markdown_inline',
     'bash',
     'dockerfile',
     'python',

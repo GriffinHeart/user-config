@@ -31,6 +31,7 @@
   "telescope-file-browser.nvim": { "branch": "master", "commit": "e03ff55962417b69c85ef41424079bb0580546ba" },
   "telescope.nvim": { "branch": "master", "commit": "47c755d737702df7a39b640c8d9c473a728be1df" },
   "tokyonight.nvim": { "branch": "main", "commit": "1ee11019f8a81dac989ae1db1a013e3d582e2033" },
+  "trouble.nvim": { "branch": "main", "commit": "20d1b30d6925213abece21d35858a16e11d1e9fc" },
   "tslime.vim": { "branch": "main", "commit": "9b2b99e409336584103b83c597fdb6234875ae25" },
   "vim-matchup": { "branch": "master", "commit": "17cc05867cb3314761e4baa20115a27120f8e82c" },
   "vim-maximizer": { "branch": "master", "commit": "2e54952fe91e140a2e69f35f22131219fcd9c5f1" },

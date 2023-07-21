@@ -53,6 +53,21 @@ lazy.setup({
     'onsails/lspkind-nvim'
   },
   {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      padding = false,
+      auto_preview = false,
+      auto_jump = {},
+      action_keys = {
+        open_split = "s",
+        open_vsplit = "v",
+
+        severity = {}
+      }
+    },
+  },
+  {
     'L3MON4D3/LuaSnip'
   },
   {
