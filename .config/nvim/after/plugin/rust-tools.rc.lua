@@ -22,10 +22,24 @@ end
 
 local opts = {
     -- ... other configs
-    dap = {
-        adapter = require('rust-tools.dap').get_codelldb_adapter(
-            codelldb_path, liblldb_path)
+  dap = {
+    adapter = require('rust-tools.dap').get_codelldb_adapter(
+      codelldb_path, liblldb_path
+    )
+  },
+  server = {
+    settings = {
+      -- to enable rust-analyzer settings visit:
+      -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+      ["rust-analyzer"] = {
+        -- enable clippy on save
+        check = {
+          command = "clippy",
+          extraArgs = "--all-features"
+        },
+      }
     }
+  },
 }
 
 rusttools.setup(opts);
