@@ -22,6 +22,9 @@ saga.setup({
   callhierarchy = {
     layout = 'normal',
   },
+  lightbulb = {
+    virtual_text = false,
+  },
   server_filetype_map = {},
   symbol_in_winbar = { enable = false },
 })
