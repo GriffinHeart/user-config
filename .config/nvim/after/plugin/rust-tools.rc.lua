@@ -28,6 +28,9 @@ local opts = {
     )
   },
   server = {
+    on_attach = function(_, bufnr)
+      vim.keymap.set("n", "<Leader>xh", rusttools.hover_actions.hover_actions, { buffer = bufnr })
+    end,
     settings = {
       -- to enable rust-analyzer settings visit:
       -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc

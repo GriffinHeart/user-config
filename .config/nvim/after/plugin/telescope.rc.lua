@@ -54,7 +54,3 @@ end)
 vim.keymap.set('n', '<leader>fh', function()
 	builtin.help_tags()
 end)
-
-vim.keymap.set('n', '<leader>dl', '<cmd>Telescope diagnostics<cr>',
-  { noremap = true, silent = true }
-)

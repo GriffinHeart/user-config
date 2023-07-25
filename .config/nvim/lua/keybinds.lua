@@ -73,18 +73,28 @@ keymap.set('n', '<C-d>', '<C-d>zz')
 keymap.set('n', '<leader>ll', ':set list!<CR>')
 
 -- start replace on word
-vim.keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- code related bindings
--- lightbulb code action
-keymap.set('n', '<leader>ca', '<cmd>Lspsaga code_action<cr>', noremap_opt)
-keymap.set('n', '<leader>co', '<cmd>Lspsaga outline<cr>', noremap_opt)
 -- LSP incoming calls looks usefull check it in lspsaga
 
+local opts = { noremap = true, silent = true }
 
---keymap.set('n', '<leader> vim.lsp.buf.format()]]
+keymap.set('n', '<leader>_=', '<cmd>lua vim.lsp.buf.format()<cr>')
 
+keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
+
+-- leader xh is bound in rust tools
+-- lightbulb code action
+keymap.set('n', '<leader>xa', '<cmd>Lspsaga code_action<cr>', opts)
+keymap.set('n', '<leader>xl', '<cmd>Lspsaga outline<cr>', opts)
 -- diagnostics
-keymap.set('n', '<leader>ds', '<cmd>Lspsaga show_line_diagnostics<cr>', noremap_opt)
-keymap.set('n', '<leader>dn', '<Cmd>Lspsaga diagnostic_jump_next<cr>', noremap_opt)
-keymap.set('n', '<leader>dp', '<Cmd>Lspsaga diagnostic_jump_prev<cr>', noremap_opt)
+keymap.set('n', '<leader>xs', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
+keymap.set('n', '<leader>xt', '<cmd>TroubleToggle<cr>', opts)
+
+keymap.set('n', '<leader>xf', '<cmd>Lspsaga finder<cr>', opts)
+keymap.set('n', '<leader>xi', '<cmd>Lspsaga incoming_calls<cr>', opts)
+-- if not needed change outline to be this one
+--keymap.set('n', '<leader>xo', '<cmd>Lspsaga outgoing_calls<cr>', opts)
+
+keymap.set('n', '<leader>xd', '<cmd>Lspsaga peek_definition<cr>', opts)
