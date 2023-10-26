@@ -69,8 +69,9 @@ keymap.set('n', 'N', 'Nzzzv')
 keymap.set('n', '<C-u>', '<C-u>zz')
 keymap.set('n', '<C-d>', '<C-d>zz')
 
--- Toggle setlist
+-- Toggle setlist (show whitespace characters)
 keymap.set('n', '<leader>ll', ':set list!<CR>')
+keymap.set('n', '<leader>sw', ':StripWhitespace<CR>')
 
 -- start replace on word
 keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
@@ -86,15 +87,16 @@ keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
 
 -- leader xh is bound in rust tools
 -- lightbulb code action
-keymap.set('n', '<leader>xa', '<cmd>Lspsaga code_action<cr>', opts)
-keymap.set('n', '<leader>xl', '<cmd>Lspsaga outline<cr>', opts)
+keymap.set('n', '<leader>da', '<cmd>Lspsaga code_action<cr>', opts)
+keymap.set('n', '<leader>dl', '<cmd>Lspsaga outline<cr>', opts)
 -- diagnostics
-keymap.set('n', '<leader>xs', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
-keymap.set('n', '<leader>xt', '<cmd>TroubleToggle<cr>', opts)
+keymap.set('n', '<leader>ds', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
+keymap.set('n', '<leader>dt', '<cmd>TroubleToggle<cr>', opts)
 
-keymap.set('n', '<leader>xf', '<cmd>Lspsaga finder<cr>', opts)
-keymap.set('n', '<leader>xi', '<cmd>Lspsaga incoming_calls<cr>', opts)
+keymap.set('n', '<leader>df', '<cmd>Lspsaga finder<cr>', opts)
+keymap.set('n', '<leader>di', '<cmd>Lspsaga incoming_calls<cr>', opts)
 -- if not needed change outline to be this one
 --keymap.set('n', '<leader>xo', '<cmd>Lspsaga outgoing_calls<cr>', opts)
 
-keymap.set('n', '<leader>xd', '<cmd>Lspsaga peek_definition<cr>', opts)
+keymap.set('n', '<leader>dd', '<cmd>Lspsaga peek_definition<cr>', opts)
+keymap.set('n', '<leader>dr', '<cmd>lua lua.lsp.buf.rename()', opts)

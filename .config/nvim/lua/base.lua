@@ -64,4 +64,3 @@ vim.opt.iskeyword:append('-')
 
 -- let columns after 80 be highlighted
 vim.cmd([[let &colorcolumn=join(range(81, 999), ',')]])
-

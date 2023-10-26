@@ -5,7 +5,7 @@
 [includeIf "gitdir:~/src/work/"]
   path =  ~/.config/git/work_config
 [push]
-  default = current
+	default = current
 [pull]
   ff = only
 [rebase]

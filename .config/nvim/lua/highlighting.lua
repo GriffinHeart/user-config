@@ -2,4 +2,3 @@
 vim.cmd([[highlight ExtraWhitespace ctermbg=white guibg=white]])
 vim.cmd([[match ExtraWhitespace /\s\+$\| \+\ze\t/]])
 vim.cmd([[match ExtraWhitespace /\s\+$/]])
-

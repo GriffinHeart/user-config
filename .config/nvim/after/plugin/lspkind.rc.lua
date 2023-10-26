@@ -47,6 +47,7 @@ kind.init({
 		Struct = "פּ",
 		Event = "",
 		Operator = "",
-		TypeParameter = ""
+		TypeParameter = "",
+    Copilot = "",
 	},
 })

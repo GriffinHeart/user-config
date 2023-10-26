@@ -86,6 +86,12 @@ lazy.setup({
     'hrsh7th/cmp-cmdline'
   },
   {
+    'hrsh7th/cmp-nvim-lsp'
+  },
+  {
+    'hrsh7th/cmp-nvim-lsp-signature-help'
+  },
+  {
     'hrsh7th/nvim-cmp'
   },
   {
@@ -123,6 +129,9 @@ lazy.setup({
     'lewis6991/gitsigns.nvim'
   },
   {
+    'tpope/vim-fugitive'
+  },
+  {
     'terrortylor/nvim-comment'
   },
   {
@@ -146,5 +155,59 @@ lazy.setup({
   {
     "iamcco/markdown-preview.nvim",
     build = function() vim.fn["mkdp#util#install"]() end,
-  }
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  },
+  {
+    -- install and manage LSPs/formatters/linters etc
+    "williamboman/mason.nvim",
+    config = function ()
+      require("mason").setup()
+    end
+  },
+  {
+    -- Run linters/formatters etc
+    "mfussenegger/nvim-lint",
+    config = function ()
+      require("lint").linters_by_ft = {
+        markdown = {"markdownlint"}
+      }
+
+      vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+        callback = function()
+          require("lint").try_lint()
+        end,
+      })
+    end
+  },
+  {
+    -- highlight and stripwhitespaces
+    "ntpeters/vim-better-whitespace",
+    config = function ()
+      vim.cmd(":EnableWhitespace")
+    end
+  },
+  {
+    -- integrate with Dash doc app
+    "mrjones2014/dash.nvim",
+    build = "make install",
+    config = function()
+      require("dash").setup({
+        dash_app_path = '/Applications/Dash 2.app',
+      })
+    end
+  },
 })
