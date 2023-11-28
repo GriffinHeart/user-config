@@ -1,0 +1,4 @@
+[alias]
+ba = "build --all-targets --all-features"
+ca = "clippy --all-targets --all-features"
+t = "nextest r --all-targets --all-features"

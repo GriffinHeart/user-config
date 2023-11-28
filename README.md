@@ -39,6 +39,8 @@ Setup:
 [user]
   email = <work-email>
 ```
+4. Deal with configs that don't respect XDG home (cd ~)
+  - `ln -s ~/src/personal/user-config/.config/cargo ./.cargo`
 3. setup iterm2
   - Download SourceCodePro font [link](https://www.nerdfonts.com/font-downloads)
   - Install Sauce Code Pro Nerd Font Complete.ttf and Mono version ttf (regular, italic, bold, bold italic)
