@@ -28,6 +28,7 @@ ts.setup {
     'tsx',
     'starlark',
     'rust',
+    'terraform',
   },
   auto_tag = {
     enable = true,

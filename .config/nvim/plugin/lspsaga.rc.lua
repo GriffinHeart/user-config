@@ -21,6 +21,10 @@ saga.setup({
   },
   callhierarchy = {
     layout = 'normal',
+    keys = {
+      split = 's',
+      vsplit = 'v',
+    }
   },
   lightbulb = {
     virtual_text = false,

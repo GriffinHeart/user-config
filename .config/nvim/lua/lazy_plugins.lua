@@ -52,6 +52,12 @@ lazy.setup({
   {
     'onsails/lspkind-nvim'
   },
+  {  -- lsp status report
+    'j-hui/fidget.nvim',
+    opts = {
+    -- options
+    },
+  },
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },

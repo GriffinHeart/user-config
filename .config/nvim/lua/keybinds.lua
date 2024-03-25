@@ -10,15 +10,34 @@ keymap.set('n', 'k', 'gk')
 
 -- jk to esc
 keymap.set('i', 'jk', '<esc>', noremap_opt)
--- unbind esc
-keymap.set('i', '<esc>', '<nop>', noremap_opt)
 
--- clear searched highlight
-keymap.set('n', '<leader>nh', ':nohl<CR>')
+-- bind esc to clear hlsearch
+keymap.set({ 'i', 'n' }, '<esc>', '<cmd>noh<cr>', { desc = 'Escape and clear hlsearch', noremap = true })
 
 -- maximize toggle
-keymap.set('n', '<leader>sm', ':MaximizerToggle<CR>')
+keymap.set('n', '<leader>um', ':MaximizerToggle<CR>')
 
+local function diag_toggle()
+  -- if this Neovim version supports checking if diagnostics are enabled
+  -- then use that for the current state
+  local enabled
+  if vim.diagnostic.is_disabled then
+    enabled = not vim.diagnostic.is_disabled()
+  end
+  enabled = not enabled
+
+  local rustools = require('rust-tools')
+  if enabled then
+    vim.diagnostic.enable()
+    if rustools then rustools.inlay_hints.set() end
+  else
+    vim.diagnostic.disable()
+    if rustools then rustools.inlay_hints.unset() end
+  end
+end
+
+-- toggle diagnostics
+keymap.set('n', '<leader>ud', function() diag_toggle() end, { desc = "Toggle diagnostics" })
 
 -- Turn off arrow keys
 keymap.set('n', '<Left>', '<nop>', noremap_opt)
@@ -37,6 +56,12 @@ keymap.set('n', '<C-J>', '<C-W><C-J>', noremap_opt)
 keymap.set('n', '<C-K>', '<C-W><C-K>', noremap_opt)
 keymap.set('n', '<C-L>', '<C-W><C-L>', noremap_opt)
 
+-- Resize window using <ctrl> arrow keys
+keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+
 -- ,w to write
 keymap.set('n', '<leader>w', ':w<CR>')
 
@@ -46,7 +71,7 @@ keymap.set('n', 'x', '"_x')
 -- Preserve copy when pasting
 keymap.set('x', '<leader>p', '"_dP')
 
--- make <leader>gf open file
+-- make <leader>gf open file in vsplit
 keymap.set('n', '<leader>gf', '<C-W>vgf')
 
 -- open alternate files in v and h splits
@@ -58,6 +83,7 @@ keymap.set('n', '<leader>as', ':AS<CR>', noremap_opt)
 -- keymap.set('v', 'J', ":m '>+1<CR>gv=gv'")
 -- keymap.set('v', 'K', ":m '<-2<CR>gv=gv'")
 
+
 -- Join while keeping cursor in same place
 keymap.set('n', 'J', 'mzJ`z')
 
@@ -68,6 +94,10 @@ keymap.set('n', 'N', 'Nzzzv')
 -- Center screen when moving half pages
 keymap.set('n', '<C-u>', '<C-u>zz')
 keymap.set('n', '<C-d>', '<C-d>zz')
+
+-- go back to visual after indenting
+keymap.set("v", "<", "<gv")
+keymap.set("v", ">", ">gv")
 
 -- Toggle setlist (show whitespace characters)
 keymap.set('n', '<leader>ll', ':set list!<CR>')
@@ -89,6 +119,8 @@ keymap.set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', opts)
 -- lightbulb code action
 keymap.set('n', '<leader>da', '<cmd>Lspsaga code_action<cr>', opts)
 keymap.set('n', '<leader>dl', '<cmd>Lspsaga outline<cr>', opts)
+
+
 -- diagnostics
 keymap.set('n', '<leader>ds', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
 keymap.set('n', '<leader>dt', '<cmd>TroubleToggle<cr>', opts)
@@ -99,4 +131,7 @@ keymap.set('n', '<leader>di', '<cmd>Lspsaga incoming_calls<cr>', opts)
 --keymap.set('n', '<leader>xo', '<cmd>Lspsaga outgoing_calls<cr>', opts)
 
 keymap.set('n', '<leader>dd', '<cmd>Lspsaga peek_definition<cr>', opts)
-keymap.set('n', '<leader>dr', '<cmd>lua lua.lsp.buf.rename()', opts)
+keymap.set('n', '<leader>dr', '<cmd>lua lua.lsp.buf.rename()<cr>', opts)
+
+-- git related
+keymap.set('n', '<leader>gb', '<cmd>Git blame -w -C -C -C<cr>')

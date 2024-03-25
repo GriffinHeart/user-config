@@ -1,6 +1,16 @@
 vim.cmd [[
   let test#strategy = "tslime"
   let test#python#runner = "pytest"
+
+  function! RustTransform(cmd) abort
+    if 'cargo nextest run' =~ a:cmd
+      return substitute(a:cmd, "lib::", "", "")
+    endif
+    return a:cmd
+  endfunction
+
+  let g:test#custom_transformations = { 'tslime': function('RustTransform')}
+  let g:test#transformation = 'tslime'
 ]]
 
 -- Running tests

@@ -40,6 +40,9 @@ local opts = {
           command = "clippy",
           extraArgs = "--all-features"
         },
+        rustfmt = {
+          extraArgs = { "+nightly" }
+        },
       }
     }
   },
