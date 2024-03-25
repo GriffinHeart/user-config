@@ -29,7 +29,7 @@ Setting up true color: https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
 Setup:
 
 1. install brew
-2. basic tools `brew install zsh iterm2 tmux neovim git chrome`
+2. basic tools `brew install zsh iterm2 tmux neovim git chrome difftastic`
 3. install oh-my-zsh
 4. clone the user-config repo into `src/personal/user-config`
   - `ln -s  ~/src/personal/user-config/.config`

@@ -4,23 +4,34 @@
   email = hugofalmeida@gmail.com
 [includeIf "gitdir:~/src/work/"]
   path =  ~/.config/git/work_config
+[core]
+  excludesfile = ~/.config/git/.gitignore_global
 [push]
 	default = current
 	autoSetupRemote = true
 [pull]
   ff = only
+  rebase = true
 [rebase]
   autostash = true
 [merge]
   tool = kdiff3
-[diff]
-  guitool = kdiff3
 [mergetool "kdiff3"]
   trustExitCode = false
-[core]
-  excludesfile = ~/.config/git/.gitignore_global
+[diff]
+  tool = difftastic
+  guitool = kdiff3
+[difftool]
+  prompt = false
+  external = difft
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+  difftool = true
 [alias]
   co = checkout
+  pushf = push --force-with-lease
+  p = pull --autostash
   s = stash
   sp = stash pop
   su = !git stash show -p | git apply -R
@@ -33,6 +44,8 @@
   rd = rebase -i develop
   r = rebase -i main
   mt = mergetool
+  find = log -p -S
+  diffw = diff --word-diff
 	delete-squashed = "!f() { local targetBranch=${1:-main} && git checkout -q $targetBranch && git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) && [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done; }; f"
 [difftool "winkdiff3"]
   cmd= /mnt/c/Program\\ Files/KDiff3/kdiff3.exe "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)"
@@ -44,3 +57,16 @@
   helper = osxkeychain
 [init]
   defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[blame]
+  date = relative
+[rerere]
+  enabled = true
+[column]
+  ui = auto
+[branch]
+  sort = -committerdate

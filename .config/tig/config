@@ -3,6 +3,12 @@ set main-view-date-format = "%d/%m/%y %H:%M"
 set main-view-author-display = abbreviated
 set main-view-id-display = true
 
+set blame-options = -w -C -C -C -L
+set blame-view = \
+  author:abbreviated \
+  date:relative-compact
+
+
 color cursor default 8
 color title-focus default 8
 
