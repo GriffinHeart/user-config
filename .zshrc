@@ -161,6 +161,9 @@ bashcompinit
 # Enable autocomplete
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Enable bah completions; brew install bash-completion@2
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
 # Created by `pipx` on 2022-10-27 01:09:06
 export PATH="$PATH:/Users/hugo.almeida/.local/bin"
 eval "$(register-python-argcomplete pipx)"

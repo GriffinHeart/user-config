@@ -38,7 +38,14 @@ lazy.setup({
     build = ':TSUpdate'
   },
   {
-    'jose-elias-alvarez/null-ls.nvim' -- Make neovim a language server for prettie
+    'nvimtools/none-ls.nvim', -- Make neovim a language server for prettie
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+        sources = {
+        }
+      })
+    end,
   },
   {
     'MunifTanjim/prettier.nvim' -- prettier as LSP from null-ls

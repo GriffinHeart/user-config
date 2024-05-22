@@ -1,6 +1,5 @@
 vim.cmd [[
   let test#strategy = "tslime"
-  let test#python#runner = "pytest"
 
   function! RustTransform(cmd) abort
     if 'cargo nextest run' =~ a:cmd

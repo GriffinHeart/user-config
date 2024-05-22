@@ -37,7 +37,7 @@ local function diag_toggle()
 end
 
 -- toggle diagnostics
-keymap.set('n', '<leader>ud', function() diag_toggle() end, { desc = "Toggle diagnostics" })
+keymap.set('n', '<leader>lsp', function() diag_toggle() end, { desc = "Toggle diagnostics" })
 
 -- Turn off arrow keys
 keymap.set('n', '<Left>', '<nop>', noremap_opt)
