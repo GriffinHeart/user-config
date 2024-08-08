@@ -73,6 +73,10 @@ keymap.set('x', '<leader>p', '"_dP')
 
 -- make <leader>gf open file in vsplit
 keymap.set('n', '<leader>gf', '<C-W>vgf')
+-- make gd jump to definition from lsp (gd usually only jumps file locally)
+keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, noremap_opt)
+-- make ,] go to definition in a vsplit
+keymap.set('n', '<leader>]', ':vsplit | lua vim.lsp.buf.definition()<CR>')
 
 -- open alternate files in v and h splits
 keymap.set('n', '<leader>av', ':AV<CR>', noremap_opt)
