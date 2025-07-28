@@ -102,6 +102,10 @@ end
 
 nvim_tree.setup({
   on_attach = on_attach,
+  filters = { custom = { "^.git$" } },
+  sort = {
+    folders_first = false,
+  },
 	actions = {
 		open_file = {
 			quit_on_open = true,

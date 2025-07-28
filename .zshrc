@@ -140,6 +140,7 @@ alias mux="tmuxinator"
 
 alias notes='vim ~/notes.md'
 alias work='vim ~/work.md'
+alias scratch='vim ~/scratch.md'
 alias tasks='vim ~/tasks.md'
 alias admin='vim ~/administrative.md'
 alias docs='vim ~/src/work/documents/'
@@ -149,6 +150,7 @@ alias docker='podman'
 alias docker-compose='podman-compose'
 
 alias www="python -m http.server"
+alias gfx='git commit --fixup $(git log $(git merge-base main HEAD)..HEAD --oneline| fzf| cut -d" " -f1)'
 
 
 # ls colors
@@ -188,3 +190,4 @@ export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 
 export GPG_TTY=$(tty)
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"

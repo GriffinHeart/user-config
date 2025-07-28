@@ -127,6 +127,8 @@ keymap.set('n', '<leader>dl', '<cmd>Lspsaga outline<cr>', opts)
 
 -- diagnostics
 keymap.set('n', '<leader>ds', '<cmd>Lspsaga show_line_diagnostics<cr>', opts)
+keymap.set('n', '<leader>dn', vim.diagnostic.goto_next, opts)
+keymap.set('n', '<leader>dp', vim.diagnostic.goto_prev, opts)
 keymap.set('n', '<leader>dt', '<cmd>TroubleToggle<cr>', opts)
 
 keymap.set('n', '<leader>df', '<cmd>Lspsaga finder<cr>', opts)

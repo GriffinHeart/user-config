@@ -51,6 +51,11 @@ vim.keymap.set('n', '<leader>fb', function()
 	}))
 end)
 
+vim.keymap.set('n', '<leader>fs', function()
+	builtin.lsp_document_symbols()
+end)
+
+
 vim.keymap.set('n', '<leader>fh', function()
 	builtin.help_tags()
 end)

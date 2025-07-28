@@ -6,12 +6,17 @@ end
 
 lazy.setup({
   {
+    "vhyrro/luarocks.nvim",
+    priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+    config = true,
+  },
+  {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
     opts = {
       on_colors = function(colors)
-        colors.comment = "#767676"
+        colors.comment = "#c8c8c8"
         colors.fg_gutter = "#767676"
       end
     }
@@ -80,9 +85,9 @@ lazy.setup({
       }
     },
   },
-  {
-    'L3MON4D3/LuaSnip'
-  },
+  -- {
+  --   'L3MON4D3/LuaSnip'
+  -- },
   {
     'rafamadriz/friendly-snippets'
   },
@@ -157,7 +162,9 @@ lazy.setup({
     'vim-test/vim-test'
   },
   {
-    'simrat39/rust-tools.nvim'
+    'mrcjkb/rustaceanvim',
+    version = '^5', -- Recommended
+    lazy = false, -- This plugin is already lazy
   },
   {
     'mfussenegger/nvim-dap'
@@ -196,7 +203,8 @@ lazy.setup({
     "mfussenegger/nvim-lint",
     config = function ()
       require("lint").linters_by_ft = {
-        markdown = {"markdownlint"}
+        markdown = {"markdownlint"},
+        yaml = {"actionlint"}
       }
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {

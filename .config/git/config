@@ -14,6 +14,7 @@
   rebase = true
 [rebase]
   autostash = true
+  updateRefs = true
 [merge]
   tool = kdiff3
 [mergetool "kdiff3"]
@@ -47,6 +48,7 @@
   find = log -p -S
   diffw = diff --word-diff
 	delete-squashed = "!f() { local targetBranch=${1:-main} && git checkout -q $targetBranch && git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) && [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done; }; f"
+  recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 [difftool "winkdiff3"]
   cmd= /mnt/c/Program\\ Files/KDiff3/kdiff3.exe "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)"
 [mergetool "winkdiff3"]
