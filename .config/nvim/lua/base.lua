@@ -11,7 +11,7 @@ vim.opt.fileencoding = 'utf-8'
 vim.wo.number = true
 
 vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin= 1
+vim.g.loaded_netrwPlugin = 1
 
 -- when no suitable python3 found it makes vim startup very slow, disable it
 -- this disables ability to for example can't run :python3 print("testing")
@@ -40,6 +40,7 @@ vim.opt.backspace = 'start,eol,indent'
 vim.opt.path:append { '**' } -- Search down subfolders to find files
 vim.opt.wildignore:append { '*/node_modules/*' }
 vim.opt.wildmode = 'longest:full,list:full'
+vim.opt.spell = true
 
 vim.opt.listchars = 'tab:>\\ ,eol:¬,trail:·'
 
@@ -48,7 +49,7 @@ vim.opt.termguicolors = true
 vim.opt.winblend = 0
 vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
---vim.opt.background = 'dark'
+vim.opt.background = 'dark'
 
 vim.opt.signcolumn = 'yes'
 

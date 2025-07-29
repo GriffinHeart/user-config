@@ -40,11 +40,9 @@ local opts = {
         -- enable clippy on save
         check = {
           command = "clippy",
-          extraArgs = "--all-features"
+          extraArgs = {"--all-features"},
         },
-        rustfmt = {
-          extraArgs = { "+nightly" }
-        },
+        rustfmt = {},
       }
     }
   },

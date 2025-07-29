@@ -47,15 +47,16 @@ Setup:
   - Pref->General->Pref load preferences directly from user-config file
   - Don't save now just relaunch iTerm2 to take effect
 4. make the brew zsh default (see [link](https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/)
-  - brew info zsh (note the path)
+  - brew info zsh (note the path, brew changed its paths to /opt/homebrew/bin)
   - `sudo dscl . -create /Users/$USER UserShell <shell-path>`
 5. Setup `.zshrc`
   - `cd ~/.oh-my-zsh/custom/plugins`
   - `git clone --depth 1 -- https://github.com/zsh-users/zsh-autosuggestions`
   - `git clone --depth 1 -- https://github.com/zsh-users/zsh-syntax-highlighting`
+  - `git clone --depth 1 -- https://github.com/Aloxaf/fzf-tab`
   - `ln ~/src/personal/user-config/.zshrc .zshrc`
 3. productivity tools `brew install alfred rectangle google-drive keepassxc tmuxinator`
-4. essential terminal tools `brew install fzf tig kdiff3`
+4. essential terminal tools `brew install fzf tig kdiff3 powerlevel10k`
   - Note: If you get `Can't be opened because...` error on kdiff3 go to Application right click open
   - install fzf completions `$(brew --prefix)/opt/fzf/install`
 5. misc tools `brew install gron rg jq tldr wget tree asdf peco`

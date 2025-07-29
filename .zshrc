@@ -88,6 +88,7 @@ HYPHEN_INSENSITIVE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+    direnv
     gitfast
     z
     fzf-tab
@@ -163,12 +164,9 @@ bashcompinit
 # Enable autocomplete
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Enable bah completions; brew install bash-completion@2
+# Enable bash completions; brew install bash-completion@2
 [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
-# Created by `pipx` on 2022-10-27 01:09:06
-export PATH="$PATH:/Users/hugo.almeida/.local/bin"
-eval "$(register-python-argcomplete pipx)"
 
 # Shorten the prompt
 # prompt_dir() {
@@ -181,13 +179,13 @@ export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 # . ~/.asdf/plugins/java/set-java-home.zsh
 
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export ASDF_GOLANG_MOD_VERSION_ENABLED=true
-source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
 
 export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"

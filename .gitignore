@@ -1,5 +1,4 @@
 .netrwhist
 .vim/
 .config/containers
-.config/cargo/registry
-.config/cargo/bin
+.config/cargo
