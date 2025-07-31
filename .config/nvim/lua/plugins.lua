@@ -283,6 +283,7 @@ return {
           enable = true,
           settings = elixirls.settings({
             dialyzerEnabled = true,
+            incrementalDializer = true,
             fetchDeps = true,
             enableTestLenses = false,
             suggestSpecs = true,
