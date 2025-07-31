@@ -1,54 +1,56 @@
-local status, rustaceanvim = pcall(require, 'rustaceanvim')
-if (not status) then return end
-
-local extension_path = vim.env.HOME .. '/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/'
-
-local this_os = vim.loop.os_uname().sysname;
-if this_os:find "Windows" then
-  extension_path = vim.env.HOME .. '/.vscode-server/extensions/vadimcn.vscode-lldb-1.9.2/'
+local status, rustaceanvim = pcall(require, "rustaceanvim")
+if not status then
+	return
 end
 
-local codelldb_path = extension_path .. 'adapter/codelldb'
-local liblldb_path = extension_path .. 'lldb/lib/liblldb'
+local extension_path = vim.env.HOME .. "/.vscode-oss/extensions/vadimcn.vscode-lldb-1.9.2-universal/"
+
+local this_os = vim.loop.os_uname().sysname
+if this_os:find("Windows") then
+	extension_path = vim.env.HOME .. "/.vscode-server/extensions/vadimcn.vscode-lldb-1.9.2/"
+end
+
+local codelldb_path = extension_path .. "adapter/codelldb"
+local liblldb_path = extension_path .. "lldb/lib/liblldb"
 
 -- The path in windows is different
-if this_os:find "Windows" then
-  codelldb_path = extension_path .. "adapter\\codelldb.exe"
-  liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+if this_os:find("Windows") then
+	codelldb_path = extension_path .. "adapter\\codelldb.exe"
+	liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
 else
-  -- The liblldb extension is .so for linux and .dylib for macOS
-  liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+	-- The liblldb extension is .so for linux and .dylib for macOS
+	liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
 end
 
-local cfg = require('rustaceanvim.config')
+local cfg = require("rustaceanvim.config")
 local opts = {
-  tools = {
-    test_executor = 'background'
-  },
-    -- ... other configs
-  dap = {
-    adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path)
-  },
-  server = {
-    -- on_attach = function(_, bufnr)
-    --   vim.keymap.set("n", "<Leader>xh", rustaceanvim.hover_actions.hover_actions, { buffer = bufnr })
-    -- end,
-    settings = {
-      -- to enable rust-analyzer settings visit:
-      -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-      ["rust-analyzer"] = {
-        -- enable clippy on save
-        check = {
-          command = "clippy",
-          extraArgs = {"--all-features"},
-        },
-        rustfmt = {},
-      }
-    }
-  },
+	tools = {
+		test_executor = "background",
+	},
+	-- ... other configs
+	dap = {
+		adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
+	},
+	server = {
+		-- on_attach = function(_, bufnr)
+		--   vim.keymap.set("n", "<Leader>xh", rustaceanvim.hover_actions.hover_actions, { buffer = bufnr })
+		-- end,
+		settings = {
+			-- to enable rust-analyzer settings visit:
+			-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+			["rust-analyzer"] = {
+				-- enable clippy on save
+				check = {
+					command = "clippy",
+					extraArgs = { "--all-features" },
+				},
+				rustfmt = {},
+			},
+		},
+	},
 }
 
-vim.g.rustaceanvim = opts;
+vim.g.rustaceanvim = opts
 local dap = require("dap")
 dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 
