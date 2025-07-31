@@ -105,3 +105,7 @@ that doesn't include python 3.11 grammar
 
 force a newer version of jedi
 `pipx inject --pip-args="--upgrade" python-lsp-server jedi`
+
+- erlang requires wxwidget 3.2.\* or wxwidget 3.3.\* compiled with --with-compat30
+  - brew formula doesn't allow to adjust it, so just download wxwidget 3.2.* and
+  compile it

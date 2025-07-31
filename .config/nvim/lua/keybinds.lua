@@ -18,12 +18,12 @@ keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr>", { desc = "Escape and clear hls
 keymap.set("n", "<leader>um", ":MaximizerToggle<CR>")
 
 local function diag_toggle()
-	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end
 
 -- toggle diagnostics
 keymap.set("n", "<leader>lsp", function()
-	diag_toggle()
+  diag_toggle()
 end, { desc = "Toggle diagnostics" })
 
 -- Turn off arrow keys
@@ -61,7 +61,7 @@ keymap.set("x", "<leader>p", '"_dP')
 keymap.set("n", "<leader>gf", "<C-W>vgf")
 -- make gd jump to definition from lsp (gd usually only jumps file locally)
 keymap.set("n", "gd", function()
-	vim.lsp.buf.definition()
+  vim.lsp.buf.definition()
 end, noremap_opt)
 -- make ,] go to definition in a vsplit
 keymap.set("n", "<leader>]", ":vsplit | lua vim.lsp.buf.definition()<CR>")
@@ -103,15 +103,15 @@ keymap.set("n", "<leader>ss", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Lef
 local opts = { noremap = true, silent = true }
 
 vim.api.nvim_create_user_command("Format", function(args)
-	local range = nil
-	if args.count ~= -1 then
-		local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-		range = {
-			start = { args.line1, 0 },
-			["end"] = { args.line2, end_line:len() },
-		}
-	end
-	require("conform").format({ async = true, lsp_format = "fallback", range = range })
+  local range = nil
+  if args.count ~= -1 then
+    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+    range = {
+      start = { args.line1, 0 },
+      ["end"] = { args.line2, end_line:len() },
+    }
+  end
+  require("conform").format({ async = true, lsp_format = "prefer", range = range })
 end, { range = true })
 
 keymap.set("n", "<leader>_=", "<cmd>Format<cr>")

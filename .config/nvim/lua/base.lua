@@ -70,19 +70,19 @@ vim.cmd([[let &colorcolumn=join(range(81, 999), ',')]])
 vim.lsp.inlay_hint.enable(true)
 
 vim.filetype.add({
-	extension = {
-		env = "dotenv.sh",
-	},
-	filename = {
-		[".env"] = "dotenv.sh",
-	},
-	pattern = {
-		["%.env%.[%w_.-]+"] = "dotenv.sh",
-		[".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
-		[".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
-	},
+  extension = {
+    env = "dotenv.sh",
+  },
+  filename = {
+    [".env"] = "dotenv.sh",
+  },
+  pattern = {
+    ["%.env%.[%w_.-]+"] = "dotenv.sh",
+    [".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
+    [".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
+  },
 })
 
 vim.diagnostic.config({
-	virtual_lines = true,
+  virtual_lines = true,
 })
