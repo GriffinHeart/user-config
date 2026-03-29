@@ -25,7 +25,7 @@ cd ~/src/personal/user-config
 ### 2. Install core tools
 
 ```bash
-brew install zsh tmux neovim git difftastic tmuxinator vivid zoxide eza
+brew install zsh tmux neovim git difftastic git-delta tmuxinator vivid zoxide eza
 brew install fzf tig kdiff3 powerlevel10k
 brew install gron ripgrep jq tldr wget tree asdf
 brew install podman podman-compose
