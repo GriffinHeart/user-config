@@ -71,8 +71,6 @@ Setup:
 8. Rectangle
   - import rectangle_config.json
 9. Configure google-drive
-  - sync hugo/pessoal folder
-10. Configure keepassxc
 11. Get and Sync private keys to keychain
   - `mkdir ~/.ssh`
   - `chmod 600 ~/.ssh`
