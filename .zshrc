@@ -6,6 +6,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export XDG_CONFIG_HOME="$HOME/.config/"
+# Override $TERM inside tmux so it matches default-terminal, preventing color issues in neovim
+[[ -n "$TMUX" ]] && export TERM=tmux-256color
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
