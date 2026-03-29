@@ -10,7 +10,7 @@ cd ~/src/personal/user-config
 ./install.sh
 ```
 
-`install.sh` symlinks `.config`, `.zshrc`, `.p10k.zsh`, and `.iterm2` into `~/`. Safe to re-run — existing symlinks are skipped, existing files are backed up with a `.bak` suffix.
+`install.sh` symlinks necessary config files into `~/`. Safe to re-run — existing symlinks are skipped, existing files are backed up with a `.bak` suffix.
 
 ---
 
@@ -27,7 +27,7 @@ cd ~/src/personal/user-config
 ```bash
 brew install zsh tmux neovim git difftastic tmuxinator coreutils vivid
 brew install fzf tig kdiff3 powerlevel10k
-brew install gron ripgrep jq tldr wget tree asdf peco
+brew install gron ripgrep jq tldr wget tree asdf
 brew install podman podman-compose
 brew install --cask iterm2 rectangle alfred
 
