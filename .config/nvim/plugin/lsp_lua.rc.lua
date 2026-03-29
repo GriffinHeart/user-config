@@ -27,7 +27,7 @@ local opts = {
 local this_os = vim.loop.os_uname().sysname
 if this_os:find("Windows") then
 	-- point to where lsp is
-	opts["cmd"] = { "/home/griffo/lua-language-server/bin/lua-language-server" }
+	opts["cmd"] = { vim.env.HOME .. "/lua-language-server/bin/lua-language-server" }
 end
 
 -- brew install lua-language-server

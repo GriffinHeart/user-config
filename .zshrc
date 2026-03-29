@@ -22,7 +22,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# DEFAULT_USER="hugo.almeida"
+# DEFAULT_USER="griffo"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -171,8 +171,7 @@ bashcompinit
 #   prompt_segment blue $CURRENT_FG '%15<...<%~%<<'
 # }
 
-export FLYCTL_INSTALL="/home/griffo/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
 export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 # . ~/.asdf/plugins/java/set-java-home.zsh
@@ -189,7 +188,7 @@ export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/Users/hugo.almeida/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
