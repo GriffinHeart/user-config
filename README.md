@@ -1,12 +1,6 @@
-Structure of repo and configs inspired and somewhat copied from [craftzdog/dotfiles-public](https://github.com/craftzdog/dotfiles-public/)
+# user-config
 
-since the modernization of my config files circa 2022
-
-git submodule init
-
-git submodule update
-
-----
+Dotfiles for macOS (M3 MacBook). Managed with symlinks via `install.sh`.
 
 ## Quick Start
 
@@ -18,106 +12,168 @@ cd ~/src/personal/user-config
 
 `install.sh` symlinks `.config`, `.zshrc`, `.p10k.zsh`, and `.iterm2` into `~/`. Safe to re-run — existing symlinks are skipped, existing files are backed up with a `.bak` suffix.
 
-----
-For Mac
+---
 
+## Full Setup
 
-to export iTerm2 settings:
+### 1. Install Homebrew
 
-plutil -convert xml1 ~/Library/Preferences/com.googlecode.iterm2.plist -o ./com.googlecode.iterm2.plist
-
-
-to import:
-
-plutil -convert binary1 com.googlecode.iterm2.plist -o ~/Library/Preferences/com.googlecode.iterm2.plist
-
-
-----
-
-Setting up true color: https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
-
-----
-
-Setup:
-
-1. install brew
-2. basic tools `brew install zsh iterm2 tmux neovim git chrome difftastic`
-3. install oh-my-zsh
-4. clone the user-config repo into `src/personal/user-config`
-  - `ln -s  ~/src/personal/user-config/.config`
-5. create git work config file with user info
-  - `neovim ~/.config/git/work_config`
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+
+### 2. Install core tools
+
+```bash
+brew install zsh tmux neovim git difftastic tmuxinator coreutils vivid
+brew install fzf tig kdiff3 powerlevel10k
+brew install gron ripgrep jq tldr wget tree asdf peco
+brew install podman podman-compose
+brew install --cask iterm2 rectangle alfred
+
+# kdiff3: if macOS blocks it on first run, right-click the app → Open
+```
+
+Install fzf shell integration:
+```bash
+$(brew --prefix)/opt/fzf/install
+```
+
+### 3. Make Homebrew zsh the default shell
+
+```bash
+# note: path changed to /opt/homebrew/bin on Apple Silicon
+sudo dscl . -create /Users/$USER UserShell /opt/homebrew/bin/zsh
+```
+
+### 4. Install oh-my-zsh and plugins
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+cd ~/.oh-my-zsh/custom/plugins
+git clone --depth 1 -- https://github.com/zsh-users/zsh-autosuggestions
+git clone --depth 1 -- https://github.com/zsh-users/zsh-syntax-highlighting
+git clone --depth 1 -- https://github.com/Aloxaf/fzf-tab
+```
+
+### 5. Clone and install dotfiles
+
+```bash
+git clone git@github.com:GriffinHeart/user-config.git ~/src/personal/user-config
+cd ~/src/personal/user-config
+./install.sh
+```
+
+For cargo (doesn't respect XDG):
+```bash
+ln -s ~/src/personal/user-config/.config/cargo ~/.cargo
+```
+
+### 6. Set up iTerm2
+
+- Download and install [Sauce Code Pro Nerd Font](https://www.nerdfonts.com/font-downloads) (regular, italic, bold, bold italic + mono variants)
+- Preferences → General → Settings → Load settings from a custom folder or URL → `~/.iterm2`
+- Relaunch iTerm2
+
+### 7. Set up git work config
+
+```bash
+nvim ~/.config/git/work_config
+```
+
+```ini
 [user]
   email = <work-email>
 ```
-4. Deal with configs that don't respect XDG home (cd ~)
-  - `ln -s ~/src/personal/user-config/.config/cargo ./.cargo`
-3. setup iterm2
-  - Download SourceCodePro font [link](https://www.nerdfonts.com/font-downloads)
-  - Install Sauce Code Pro Nerd Font Complete.ttf and Mono version ttf (regular, italic, bold, bold italic)
-  - `ln -s ~/src/personal/user-config/.iterm2 ~/.iterm2`
-  - Preferences → General → Settings → Load settings from a custom folder or URL
-  - Set path to `~/.iterm2`
-  - Relaunch iTerm2 to take effect
-4. make the brew zsh default (see [link](https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/)
-  - brew info zsh (note the path, brew changed its paths to /opt/homebrew/bin)
-  - `sudo dscl . -create /Users/$USER UserShell <shell-path>`
-5. Setup `.zshrc`
-  - `cd ~/.oh-my-zsh/custom/plugins`
-  - `git clone --depth 1 -- https://github.com/zsh-users/zsh-autosuggestions`
-  - `git clone --depth 1 -- https://github.com/zsh-users/zsh-syntax-highlighting`
-  - `git clone --depth 1 -- https://github.com/Aloxaf/fzf-tab`
-  - `ln ~/src/personal/user-config/.zshrc .zshrc`
-3. productivity tools `brew install alfred rectangle google-drive keepassxc tmuxinator`
-4. essential terminal tools `brew install fzf tig kdiff3 powerlevel10k`
-  - Note: If you get `Can't be opened because...` error on kdiff3 go to Application right click open
-  - install fzf completions `$(brew --prefix)/opt/fzf/install`
-5. misc tools `brew install gron rg jq tldr wget tree asdf peco`
-6. go get a coffee
-7. Unbind mac keyboard shortcuts
-  - c-up-arrow
-7. Make capslock ctrl
-7. Alfred
-  - ⌘+space
-8. Rectangle
-  - import rectangle_config.json
-9. Configure google-drive
-11. Get and Sync private keys to keychain
-  - `mkdir ~/.ssh`
-  - `chmod 600 ~/.ssh`
-  - Get keys
-  - Set keys permissions `chmod 600 ~/.ssh/my_key` and `chmod 600 ~/.ssh/my_key.pub`
-  - Set `~/.ssh/config`
+
+### 8. Set up asdf and languages
+
+```bash
+# Python
+asdf plugin add python
+asdf install python <version>
+asdf global python <version>
+pip install pipx
+
+# add other languages as needed
 ```
- Host *
-   UseKeychain yes
-   AddKeysToAgent yes
-   IdentityFile ~/.ssh/my_key1
-   IdentityFile ~/.ssh/my_key2
+
+### 9. Set up Neovim
+
+Plugins are managed with [lazy.nvim](https://github.com/folke/lazy.nvim) and will auto-install on first launch.
+
+```bash
+nvim
 ```
-  - Add them to keychain with `ssh-add --apple-use-keychain ~/.ssh/my_priv_key`
-12. install packer for neovim
-13. asdf
-  - install python plugin and install python version
-	- `asdf global python <version>
-	- install pipx into that version `pip install pipx`
-14. Transfer work gpg keys
-15. setup podman
-	- see https://github.com/ansible/vscode-ansible/wiki/macos
 
+### 10. Set up podman
 
-Problems:
-If LspLog complains:
+See [ansible/vscode-ansible macOS guide](https://github.com/ansible/vscode-ansible/wiki/macos).
 
-`[ERROR][2022-10-27 14:11:45] .../vim/lsp/rpc.lua:733	"rpc"	"pylsp"	"stderr"	"2022-10-27 14:11:45,223 JST - WARNING - pylsp.config.config - Failed to load hook pylsp_definitions: Python version 3.11 is currently not supported.\n"`
+### 11. Productivity apps
 
-its because pylsp is using a old version of jedi that uses a version of parso
-that doesn't include python 3.11 grammar
+- **Alfred**: set hotkey to `⌘+space` (disable Spotlight shortcut first in System Settings → Keyboard Shortcuts)
+- **Rectangle**: import `rectangle_config.json`
 
-force a newer version of jedi
-`pipx inject --pip-args="--upgrade" python-lsp-server jedi`
+### 12. System settings
 
-- erlang requires wxwidget 3.2.\* or wxwidget 3.3.\* compiled with --with-compat30
-  - brew formula doesn't allow to adjust it, so just download wxwidget 3.2.* and
-  compile it
+- Remap Caps Lock to Ctrl: System Settings → Keyboard → Modifier Keys
+- Unbind `^↑` / `^↓` mission control shortcuts to free them for tmux/vim
+
+### 13. SSH keys
+
+```bash
+mkdir ~/.ssh && chmod 700 ~/.ssh
+# copy keys, then:
+chmod 600 ~/.ssh/my_key ~/.ssh/my_key.pub
+ssh-add --apple-use-keychain ~/.ssh/my_key
+```
+
+`~/.ssh/config`:
+```
+Host *
+  UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/my_key
+```
+
+### 14. Transfer GPG keys
+
+```bash
+# on old machine
+gpg --export-secret-keys <key-id> > private-key.asc
+# on new machine
+gpg --import private-key.asc
+```
+
+---
+
+## Remote Headless Setup
+
+See [setup-remote-mac.md](setup-remote-mac.md) for SSH access with sleep management.
+
+---
+
+## Reference
+
+- True color in tmux+nvim: https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
+
+---
+
+## Problems
+
+### pylsp / jedi Python version error
+
+```
+Failed to load hook pylsp_definitions: Python version X is currently not supported
+```
+
+Force a newer version of jedi:
+```bash
+pipx inject --pip-args="--upgrade" python-lsp-server jedi
+```
+
+### Erlang requires wxWidgets 3.2.x
+
+The brew formula doesn't expose the `--with-compat30` flag needed. Download and compile wxWidgets 3.2.x manually before installing Erlang via asdf.

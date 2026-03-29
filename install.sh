@@ -29,5 +29,6 @@ link .config    .config
 link .zshrc     .zshrc
 link .p10k.zsh  .p10k.zsh
 link .iterm2    .iterm2
+link .pryrc     .pryrc
 
 echo "Done."
