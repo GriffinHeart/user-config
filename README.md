@@ -44,8 +44,10 @@ Setup:
 3. setup iterm2
   - Download SourceCodePro font [link](https://www.nerdfonts.com/font-downloads)
   - Install Sauce Code Pro Nerd Font Complete.ttf and Mono version ttf (regular, italic, bold, bold italic)
-  - Pref->General->Pref load preferences directly from user-config file
-  - Don't save now just relaunch iTerm2 to take effect
+  - `ln -s ~/src/personal/user-config/.iterm2 ~/.iterm2`
+  - Preferences → General → Settings → Load settings from a custom folder or URL
+  - Set path to `~/.iterm2`
+  - Relaunch iTerm2 to take effect
 4. make the brew zsh default (see [link](https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/)
   - brew info zsh (note the path, brew changed its paths to /opt/homebrew/bin)
   - `sudo dscl . -create /Users/$USER UserShell <shell-path>`
