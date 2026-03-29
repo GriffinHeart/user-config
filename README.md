@@ -7,6 +7,18 @@ git submodule init
 git submodule update
 
 ----
+
+## Quick Start
+
+```bash
+git clone git@github.com:GriffinHeart/user-config.git ~/src/personal/user-config
+cd ~/src/personal/user-config
+./install.sh
+```
+
+`install.sh` symlinks `.config`, `.zshrc`, `.p10k.zsh`, and `.iterm2` into `~/`. Safe to re-run — existing symlinks are skipped, existing files are backed up with a `.bak` suffix.
+
+----
 For Mac
 
 
