@@ -76,6 +76,8 @@ ln -s ~/src/personal/user-config/.config/cargo ~/.cargo
 - Download and install [Sauce Code Pro Nerd Font](https://www.nerdfonts.com/font-downloads) (regular, italic, bold, bold italic + mono variants)
 - Preferences → General → Settings → Load settings from a custom folder or URL → `~/.iterm2`
 - Relaunch iTerm2
+- Install shell integration: iTerm2 menu → Install Shell Integration
+- Enable command completion notifications: Preferences → Profiles → Terminal → Show notification when idle for X seconds
 
 ### 7. Set up git work config
 
