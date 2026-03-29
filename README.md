@@ -120,7 +120,7 @@ See [ansible/vscode-ansible macOS guide](https://github.com/ansible/vscode-ansib
 ### 12. System settings
 
 - Remap Caps Lock to Ctrl: System Settings → Keyboard → Modifier Keys
-- Unbind `^↑` / `^↓` mission control shortcuts to free them for tmux/vim
+- Unbind `^↑` / `^↓` / `^←` / `^→` mission control shortcuts (System Settings → Keyboard Shortcuts → Mission Control) to free them for tmux pane resizing
 
 ### 13. SSH keys
 
