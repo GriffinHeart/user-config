@@ -281,9 +281,11 @@ return {
       elixir.setup({
         elixirls = {
           enable = true,
+          tag = "v0.28.0",
           settings = elixirls.settings({
+            autoBuild = true,
             dialyzerEnabled = true,
-            incrementalDializer = true,
+            incrementalDialyzer = false,
             fetchDeps = true,
             enableTestLenses = false,
             suggestSpecs = true,

@@ -5,9 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
 export XDG_CONFIG_HOME="$HOME/.config/"
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
@@ -146,6 +143,7 @@ alias tasks='vim ~/tasks.md'
 alias admin='vim ~/administrative.md'
 alias docs='vim ~/src/work/documents/'
 alias confnvim='vim ~/.config/nvim/'
+alias confgit='vim ~/.config/git/'
 
 alias docker='podman'
 alias docker-compose='podman-compose'
@@ -189,3 +187,11 @@ export ASDF_GOLANG_MOD_VERSION_ENABLED=true
 export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/hugo.almeida/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
