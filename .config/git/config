@@ -39,23 +39,20 @@
   su = !git stash show -p | git apply -R
   sa = stash apply
   am = commit --amend --no-edit
-  lazy = ! git pull && git commit -a -m \"commit\" && git push
   rc = rebase --continue
   ra = rebase --abort
   rs = rebase --skip
-  rd = rebase -i develop
+  rbd = rebase -i develop
+  rbm = rebase -i main
   r = rebase -i main
   mt = mergetool
   find = log -p -S
   diffw = diff --word-diff
+  # delete-squashed: remove local branches that were squash-merged into target branch (default: main)
 	delete-squashed = "!f() { local targetBranch=${1:-main} && git checkout -q $targetBranch && git branch --merged | grep -v \"\\*\" | xargs -n 1 git branch -d && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base $targetBranch $branch) && [[ $(git cherry $targetBranch $(git commit-tree $(git rev-parse $branch^{tree}) -p $mergeBase -m _)) == \"-\"* ]] && git branch -D $branch; done; }; f"
+  # delete-gone: remove local branches whose remote tracking branch has been deleted
+  delete-gone = "!git fetch -p && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
   recent = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
-[difftool "winkdiff3"]
-  cmd= /mnt/c/Program\\ Files/KDiff3/kdiff3.exe "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)"
-[mergetool "winkdiff3"]
-  cmd = /mnt/c/Program\\ Files/KDiff3/kdiff3.exe "$(wslpath -aw $BASE)" "$(wslpath -aw $LOCAL)" "$(wslpath -aw $REMOTE)" -o "$(wslpath -aw $MERGED)"
-  trustExitCode = false
-  keepBackup = false
 [credential]
   helper = osxkeychain
 [init]
@@ -73,3 +70,7 @@
   ui = auto
 [branch]
   sort = -committerdate
+[fetch]
+  prune = true
+[commit]
+  verbose = true
