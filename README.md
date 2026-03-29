@@ -25,7 +25,7 @@ cd ~/src/personal/user-config
 ### 2. Install core tools
 
 ```bash
-brew install zsh tmux neovim git difftastic tmuxinator coreutils vivid
+brew install zsh tmux neovim git difftastic tmuxinator vivid zoxide eza
 brew install fzf tig kdiff3 powerlevel10k
 brew install gron ripgrep jq tldr wget tree asdf
 brew install podman podman-compose
@@ -55,6 +55,7 @@ cd ~/.oh-my-zsh/custom/plugins
 git clone --depth 1 -- https://github.com/zsh-users/zsh-autosuggestions
 git clone --depth 1 -- https://github.com/zsh-users/zsh-syntax-highlighting
 git clone --depth 1 -- https://github.com/Aloxaf/fzf-tab
+git clone --depth 1 -- https://github.com/zsh-users/zsh-history-substring-search
 ```
 
 ### 5. Clone and install dotfiles

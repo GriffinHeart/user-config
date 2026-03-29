@@ -20,21 +20,24 @@ HYPHEN_INSENSITIVE="true"
 plugins=(
     direnv
     gitfast
-    z
     fzf-tab
     zsh-autosuggestions
     zsh-syntax-highlighting
-  	web-search
+    zsh-history-substring-search
+    web-search
     asdf
 )
 
 source $ZSH/oh-my-zsh.sh
 
 bindkey -e
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 alias vim="nvim"
-alias ll="ls -lh"
-alias lla="ls -lah"
+alias ls="eza --icons"
+alias ll="eza -l --icons --git"
+alias lla="eza -la --icons --git"
 alias mkdir="mkdir -p"
 alias reload=". ~/.zshrc && echo 'ZSH config reloaded from ~/.zshrc'"
 alias zshrc="vim ~/.zshrc && reload"
@@ -58,10 +61,6 @@ alias gfx='git commit --fixup $(git log $(git merge-base main HEAD)..HEAD --onel
 # ls colors
 export LS_COLORS="$(vivid generate tokyonight-storm)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-if [[ "$(uname)" == "Darwin" ]]; then
-  alias ls="gls --color=auto"
-fi
 # Enable autocomplete
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -83,3 +82,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+eval "$(zoxide init zsh)"
