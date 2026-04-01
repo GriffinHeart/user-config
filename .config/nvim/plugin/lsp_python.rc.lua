@@ -1,4 +1,4 @@
-require('lspconfig').pyright.setup {
+vim.lsp.config('pyright', {
   settings = {
     python = {
       analysis = {
@@ -7,7 +7,8 @@ require('lspconfig').pyright.setup {
         reportMissingModuleSource = "error",
         reportUnusedImport = "warning",
         reportUnusedVariable = "warning",
-      }
-    }
-  }
-}
+      },
+    },
+  },
+})
+vim.lsp.enable('pyright')
