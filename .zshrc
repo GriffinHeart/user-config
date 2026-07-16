@@ -89,3 +89,20 @@ eval "$(zoxide init zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+wts() {
+  local branch="" base="" saved_pwd="$PWD"
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --base) base="$2"; shift 2 ;;
+      *) branch="$1"; shift ;;
+    esac
+  done
+  if git branch --list "$branch" | grep -q .; then
+    wt switch "$branch"
+  else
+    [[ -z "$base" ]] && base=$(git branch --show-current)
+    wt switch --create "$branch" --base "$base"
+  fi
+  builtin cd -- "$saved_pwd"
+}
