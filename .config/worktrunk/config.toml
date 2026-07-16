@@ -1,0 +1,19 @@
+[post-start]
+copy = "wt step copy-ignored"
+
+[post-switch]
+tmux = """
+W={{ worktree_path }}
+B={{ branch | sanitize }}
+S=$(tmux display-message -p '#S')
+
+tmux new-window -t "$S" -c "$W" -n "$B"
+tmux split-window -t "$S:$B" -v -c "$W"
+tmux split-window -t "$S:$B" -h -c "$W"
+tmux set-window-option -t "$S:$B" main-pane-height 70%
+tmux select-layout -t "$S:$B" main-horizontal
+tmux select-pane -t "$S:$B" -t top-left
+"""
+
+[pre-remove]
+tmux = "tmux kill-window -t {{ branch | sanitize }} 2>/dev/null || true"

@@ -1,0 +1,68 @@
+Starting machine "podman-machine-default"
+[4m>>>> Executing external compose provider "/opt/homebrew/bin/docker-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m caddy Pulling 
+ 4f4fb700ef54 Already exists 
+ 14a4754c352f Pulling fs layer 
+ 69233c7df761 Pulling fs layer 
+ 69233c7df761 Download complete 
+ 5234ca7f3797 Pulling fs layer 
+ dfdc903a2c2e Pulling fs layer 
+ 14a4754c352f Downloading [================>                                  ]  1.408MB/4.182MB
+ 5234ca7f3797 Downloading [=====>                                             ]  315.3kB/2.779MB
+ dfdc903a2c2e Downloading [=>                                                 ]  406.8kB/15.75MB
+ 14a4754c352f Downloading [=================================>                 ]  2.834MB/4.182MB
+ 5234ca7f3797 Downloading [=========>                                         ]  513.6kB/2.779MB
+ dfdc903a2c2e Downloading [==>                                                ]  918.4kB/15.75MB
+ 14a4754c352f Downloading [=========================================>         ]   3.44MB/4.182MB
+ dfdc903a2c2e Downloading [====>                                              ]  1.394MB/15.75MB
+ 5234ca7f3797 Downloading [============>                                      ]  718.2kB/2.779MB
+ 14a4754c352f Download complete 
+ dfdc903a2c2e Downloading [======>                                            ]  2.196MB/15.75MB
+ 5234ca7f3797 Downloading [===================>                               ]  1.064MB/2.779MB
+ dfdc903a2c2e Downloading [=========>                                         ]  2.966MB/15.75MB
+ 5234ca7f3797 Downloading [========================>                          ]  1.388MB/2.779MB
+ dfdc903a2c2e Downloading [==========>                                        ]  3.343MB/15.75MB
+ 5234ca7f3797 Downloading [============================>                      ]  1.585MB/2.779MB
+ dfdc903a2c2e Downloading [=============>                                     ]  4.359MB/15.75MB
+ 5234ca7f3797 Downloading [=====================================>             ]   2.06MB/2.779MB
+ dfdc903a2c2e Downloading [=================>                                 ]  5.506MB/15.75MB
+ 5234ca7f3797 Downloading [===============================================>   ]   2.65MB/2.779MB
+ 5234ca7f3797 Download complete 
+ dfdc903a2c2e Downloading [======================>                            ]  6.948MB/15.75MB
+ dfdc903a2c2e Downloading [===========================>                       ]  8.619MB/15.75MB
+ dfdc903a2c2e Downloading [================================>                  ]  10.35MB/15.75MB
+ dfdc903a2c2e Downloading [======================================>            ]  12.19MB/15.75MB
+ dfdc903a2c2e Downloading [============================================>      ]  14.17MB/15.75MB
+ dfdc903a2c2e Downloading [=================================================> ]  15.45MB/15.75MB
+ dfdc903a2c2e Download complete 
+ 6b08c1b9858c Pulling fs layer 
+ 6b08c1b9858c Download complete 
+ 6b08c1b9858c Download complete 
+ caddy Pulled 
+ Network caddy_default  Creating
+ Network caddy_default  Created
+ Container caddy-caddy-1  Creating
+ Container caddy-caddy-1  Created
+ Container caddy-caddy-1  Starting
+Error response from daemon: something went wrong with the request: "listen tcp 127.0.0.1:80: bind: permission denied\n"
+Error: executing /opt/homebrew/bin/docker-compose -f /Users/hugo.almeida/services/caddy/docker-compose.yml up -d: exit status 1
+Starting machine "podman-machine-default"
+[4m>>>> Executing external compose provider "/opt/homebrew/bin/docker-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m Network caddy_default  Creating
+ Network caddy_default  Created
+ Container caddy-caddy-1  Creating
+ Container caddy-caddy-1  Created
+ Container caddy-caddy-1  Starting
+Error response from daemon: failed to create new hosts file: unable to replace "host-gateway" of host entry "host.containers.internal:host-gateway": host containers internal IP address is empty
+Error: executing /opt/homebrew/bin/docker-compose -f /Users/hugo.almeida/services/caddy/docker-compose.yml up -d: exit status 1
+Starting machine "podman-machine-default"
+[4m>>>> Executing external compose provider "/opt/homebrew/bin/docker-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m Network caddy_default  Creating
+ Network caddy_default  Created
+ Container caddy-caddy-1  Creating
+ Container caddy-caddy-1  Created
+ Container caddy-caddy-1  Starting
+ Container caddy-caddy-1  Started

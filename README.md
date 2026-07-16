@@ -114,6 +114,20 @@ nvim
 
 See [ansible/vscode-ansible macOS guide](https://github.com/ansible/vscode-ansible/wiki/macos).
 
+### 11. Local services
+
+`install.sh` sets up local services that always run on login:
+
+- **Excalidraw** — whiteboard at `http://excalidraw.localhost`
+- **Caddy** — reverse proxy routing `*.localhost` hostnames to local services
+
+The install script:
+- Symlinks `~/services/` from the repo
+- Symlinks and loads each LaunchAgent from `launchagents/`
+- Copies and loads the `pf` LaunchDaemon (requires sudo) so port 80 forwards to Caddy on 8080
+
+To add a new local service see `services/caddy/README.md`.
+
 ### 11. Productivity apps
 
 - **Alfred**: set hotkey to `⌘+space` (disable Spotlight shortcut first in System Settings → Keyboard Shortcuts)

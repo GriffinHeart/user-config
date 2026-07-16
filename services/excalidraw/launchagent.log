@@ -1,0 +1,19 @@
+/bin/sh: podman-compose: command not found
+Starting machine "podman-machine-default"
+[4m>>>> Executing external compose provider "/opt/homebrew/bin/docker-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m Network excalidraw_default  Creating
+ Network excalidraw_default  Created
+ Container excalidraw-excalidraw-1  Creating
+ Container excalidraw-excalidraw-1  Created
+ Container excalidraw-excalidraw-1  Starting
+ Container excalidraw-excalidraw-1  Started
+Starting machine "podman-machine-default"
+[4m>>>> Executing external compose provider "/opt/homebrew/bin/docker-compose". Please see podman-compose(1) for how to disable this message. <<<<
+
+[0m Network excalidraw_default  Creating
+ Network excalidraw_default  Created
+ Container excalidraw-excalidraw-1  Creating
+ Container excalidraw-excalidraw-1  Created
+ Container excalidraw-excalidraw-1  Starting
+ Container excalidraw-excalidraw-1  Started

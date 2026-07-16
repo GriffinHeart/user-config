@@ -1,0 +1,8 @@
+{
+  # disable HTTPS - local only
+  auto_https off
+}
+
+excalidraw.localhost:80 {
+  reverse_proxy host.containers.internal:3333
+}
